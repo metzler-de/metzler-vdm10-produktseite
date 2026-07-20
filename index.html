@@ -1657,11 +1657,11 @@
     .bx-tell-badge { display:inline-flex; align-items:center; gap:0.7rem; width:auto; height:auto; background:none; border-radius:0; color:var(--teal); font-size:2.25rem; font-weight:800; letter-spacing:-0.02em; line-height:1; margin-bottom:1rem; }
     .bx-tell-badge::before { content:""; width:2.25rem; height:2px; background:var(--teal); border-radius:2px; }
     /* interactive progress line at the bottom of the picture */
-    .bx-tell-line { position:absolute; left:0; bottom:1rem; width:46vw; display:flex; gap:0.4rem; padding:0 1rem; z-index:6; filter:drop-shadow(0 1px 3px rgba(0,0,0,.45)); }
-    .bx-tell-seg { flex:1; height:4px; padding:0; border:none; background:rgba(255,255,255,.4); border-radius:999px; cursor:pointer; position:relative; overflow:hidden; transition:height .2s, background .2s; }
-    .bx-tell-seg:hover { background:rgba(255,255,255,.65); }
-    .bx-tell-seg.on { height:6px; }
-    .bx-tell-seg-fill { position:absolute; inset:0; background:#fff; border-radius:999px; transform:scaleX(0); transform-origin:left; transition:transform .12s linear; }
+    .bx-tell-line { position:absolute; left:0; bottom:1.25rem; width:46vw; display:flex; gap:0.6rem; padding:0 1rem; z-index:6; }
+    .bx-tell-seg { flex:1; height:6px; padding:0; border:none; background:var(--g-200); border-radius:999px; cursor:pointer; position:relative; overflow:hidden; transition:height .2s ease, background .2s ease; }
+    .bx-tell-seg:hover { background:var(--g-300); }
+    .bx-tell-seg.on { height:8px; box-shadow:0 1px 4px rgba(1,82,83,.25); }
+    .bx-tell-seg-fill { position:absolute; inset:0; background:linear-gradient(90deg,var(--teal),var(--mint)); border-radius:999px; transform:scaleX(0); transform-origin:left; transition:transform .12s linear; }
     @media(max-width:900px){
       .bx-tell { height:auto !important; }
       .bx-tell-stage { position:static; height:auto; display:block; overflow:visible; }
