@@ -1138,6 +1138,11 @@
     .cfg-bd-row span:last-child { font-weight:600; color:var(--g-900); white-space:nowrap; }
     .cfg-bd-total { border-bottom:none; border-top:2px solid var(--g-200); margin-top:.35rem; padding-top:.6rem; }
     .cfg-bd-total span { font-size:1.0625rem; font-weight:800; color:var(--g-900); }
+    .cfg-bd-sub span { color:var(--g-600); font-weight:600; }
+    /* Always-visible inline configuration summary (above PayPal notice) */
+    .cfg-summary { margin:1.25rem 0; padding:1.15rem 1.25rem; border:1px solid var(--g-200); border-radius:var(--radius-lg); background:#fff; }
+    .cfg-summary-qty { display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-top:1rem; padding-top:1rem; border-top:1px solid var(--g-200); }
+    .cfg-summary-qty-lbl { font-size:0.95rem; font-weight:700; color:var(--g-900); }
     .cfg-bar-tot small { display:block; font-size:0.8125rem; color:var(--g-600); margin-bottom:0; line-height:1.1; }
     .cfg-bar-stock { display:flex !important; align-items:center; gap:0.4rem; color:var(--green) !important; font-weight:600; white-space:nowrap; }
     .cfg-bar-stock .dot { width:8px; height:8px; border-radius:50%; background:var(--green); box-shadow:0 0 0 3px rgba(0,153,81,.18); flex-shrink:0; }
@@ -2212,6 +2217,19 @@
               </div>
               <nav class="cfg-stepbar" id="cfgStepBar" aria-label="Konfigurations-Schritte"></nav>
               <div class="cfg-scroll" id="cfgScroll"></div>
+            </div>
+
+            <!-- Always-visible configuration summary + quantity — sits above the PayPal notice -->
+            <div class="cfg-summary" id="cfgSummary" hidden>
+              <div id="cfgSummaryBd"></div>
+              <div class="cfg-summary-qty">
+                <span class="cfg-summary-qty-lbl">Menge</span>
+                <div class="qty-counter qty-counter-lg" role="group" aria-label="Menge">
+                  <button class="qty-btn" id="cfgQtyMinus" type="button" aria-label="Menge verringern">−</button>
+                  <span class="qty-value" id="cfgQtyVal">1</span>
+                  <button class="qty-btn" id="cfgQtyPlus" type="button" aria-label="Menge erhöhen">+</button>
+                </div>
+              </div>
             </div>
 
             <!-- PayPal financing + shipping facts — revealed once a colour is chosen; stay visible under the configurator too -->
@@ -4753,7 +4771,7 @@
     };
     var CHECK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>';
 
-    var S = { color:0, anschluss:null, gravurText:'', font:null, innen:{}, innenQty:{}, strom:{}, zubehoer:{}, open:{0:true}, removedNotice:null };
+    var S = { color:0, anschluss:null, gravurText:'', font:null, innen:{}, innenQty:{}, strom:{}, zubehoer:{}, open:{0:true}, removedNotice:null, qty:1 };
 
     function eur(n){ return n.toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2})+' €'; }
     function activeConn(){ return S.anschluss; }
@@ -5088,9 +5106,14 @@
       });
       var html='<div class="cfg-bd-title">Ihre Konfiguration</div>';
       rows.forEach(function(r){ html+='<div class="cfg-bd-row"><span>'+r[0]+'</span><span>'+(r[1]>0?eur(r[1]):'inklusive')+'</span></div>'; });
-      html+='<div class="cfg-bd-row cfg-bd-total"><span>Gesamt · inkl. 19 % USt.</span><span>'+eur(total())+'</span></div>';
+      if(S.qty>1){
+        html+='<div class="cfg-bd-row cfg-bd-sub"><span>Zwischensumme · pro Set</span><span>'+eur(total())+'</span></div>';
+        html+='<div class="cfg-bd-row cfg-bd-sub"><span>Menge</span><span>× '+S.qty+'</span></div>';
+      }
+      html+='<div class="cfg-bd-row cfg-bd-total"><span>Gesamt · inkl. 19 % USt.</span><span>'+eur(grandTotal())+'</span></div>';
       return html;
     }
+    function grandTotal(){ return total() * (S.qty||1); }
     function configCount(){
       var n=1;                                               // the VDM10 unit itself
       ['innen','strom','zubehoer'].forEach(function(k){
@@ -5100,12 +5123,15 @@
       return n;
     }
     function updateTotal(){
-      if(elTotal) elTotal.textContent=eur(total());
+      if(elTotal) elTotal.textContent=eur(grandTotal());
       var ready=requiredDone();
       var cart=document.getElementById('cfgToCart');
       if(cart) cart.classList.toggle('not-ready', !ready);   // stays clickable → guides to the missing step
-      var cc=document.getElementById('cfgCount'); if(cc) cc.textContent=configCount();
+      var cc=document.getElementById('cfgCount'); if(cc) cc.textContent=configCount()*(S.qty||1);
       var bd=document.getElementById('cfgBreakdown'); if(bd && !bd.hidden) bd.innerHTML=breakdownHTML();
+      var sbd=document.getElementById('cfgSummaryBd'); if(sbd) sbd.innerHTML=breakdownHTML();
+      var qv=document.getElementById('cfgQtyVal'); if(qv) qv.textContent=(S.qty||1);
+      var qm=document.getElementById('cfgQtyMinus'); if(qm) qm.disabled=(S.qty||1)<=1;
     }
 
     // ---------- open (inline, under the colours — cannot be closed) ----------
@@ -5121,12 +5147,21 @@
       if(saleP) saleP.hidden=true; if(stockEl) stockEl.hidden=true;   // hide the offer/price block above the colours
       inlineEl.hidden=false; inlineEl.classList.add('open');
       if(bar) bar.hidden=false;
+      var summ=document.getElementById('cfgSummary'); if(summ) summ.hidden=false;   // always-visible summary + qty
       document.body.classList.add('cfg-open');
       render();
       requestAnimationFrame(function(){ inlineEl.scrollIntoView({behavior:'smooth',block:'start'}); });
     }
     window.__cfgSyncColor=function(i){ S.color=i; updatePreview(); };
     document.querySelectorAll('[data-open-config]').forEach(function(b){ b.addEventListener('click',open); });
+
+    // ---------- overall quantity counter (in the always-visible summary) ----------
+    (function(){
+      var minus=document.getElementById('cfgQtyMinus'), plus=document.getElementById('cfgQtyPlus');
+      function setQty(q){ S.qty=Math.max(1,Math.min(99,q)); updateTotal(); }
+      if(minus) minus.addEventListener('click',function(){ setQty((S.qty||1)-1); });
+      if(plus)  plus.addEventListener('click',function(){ setQty((S.qty||1)+1); });
+    })();
 
     /* ════════ Konfigurator · Produktdetails Popup (DS XL-Product) ════════ */
     (function(){
