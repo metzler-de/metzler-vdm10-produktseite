@@ -577,6 +577,11 @@
     /* first tab's label aligns with the container edge (in line with the logo) */
     .pdp-tabs-row > .pdp-tab:first-child { padding-left:0; }
     .pdp-tabs-row > .pdp-tab:first-child::after { left:0; }
+    @media(max-width:768px){
+      .pdp-tab { padding:0.7rem 0.15rem; font-size:0.8125rem; }
+      .pdp-tab::after { left:0.15rem; right:0.15rem; }
+      .pdp-tabs-row { gap:0.9rem; }
+    }
     /* action buttons — not navigable tabs — set apart as outlined pills, pinned to the right */
     .pdp-tab-actions { flex:0 0 auto; margin-left:auto; display:inline-flex; align-items:center; gap:0.5rem; opacity:0; visibility:hidden; pointer-events:none; transition:opacity .2s ease; }
     .pdp-tabs.is-stuck .pdp-tab-actions { opacity:1; visibility:visible; pointer-events:auto; }
