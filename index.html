@@ -1761,8 +1761,9 @@
     .similar-head { display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-bottom:1.75rem; }
     .similar-title { font-size:clamp(1.5rem,3vw,2rem); font-weight:700; letter-spacing:-0.02em; color:var(--black); margin:0; }
     .similar-nav { display:flex; gap:0.6rem; flex-shrink:0; }
-    .similar-arrow { width:3rem; height:3rem; border-radius:var(--radius); border:1px solid var(--g-300); background:#fff; color:var(--g-900); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background .15s,border-color .15s,color .15s; }
-    .similar-arrow:hover:not(:disabled) { border-color:var(--teal); color:var(--teal); background:var(--teal-50); }
+    .similar-arrow { width:2.625rem; height:2.625rem; border-radius:var(--radius); border:1px solid var(--teal); background:#fff; color:var(--teal); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background .15s,border-color .15s,color .15s; }
+    .similar-arrow:hover:not(:disabled) { background:var(--teal-100); }
+    .similar-arrow:active:not(:disabled) { background:var(--teal); color:#fff; }
     .similar-arrow:disabled { opacity:.35; cursor:not-allowed; }
     .similar-arrow svg { width:1.2rem; height:1.2rem; }
     .similar-track { display:flex; gap:0.9rem; overflow-x:auto; scroll-snap-type:x proximity; scroll-behavior:smooth; padding:0.25rem 0.25rem 0.75rem; margin:-0.25rem; scrollbar-width:none; }
