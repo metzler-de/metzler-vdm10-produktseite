@@ -1732,8 +1732,9 @@
     .pv-box { display:inline-block; background:var(--g-100); color:var(--g-800); border-radius:var(--radius); padding:0.25rem 0.65rem; font-size:0.875rem; }
     @media(max-width:600px){
       .ptab, .ptab tbody, .ptab tbody tr, .ptab th, .ptab td { display:block; width:auto; }
-      .ptab tbody th { white-space:normal; padding-bottom:0.3rem; }
+      .ptab tbody th { width:auto; white-space:normal; padding-bottom:0.3rem; }
       .ptab tbody td { padding-top:0; }
+      .ptab tbody td.pv-wrap { display:flex; flex-wrap:wrap; gap:0.6rem 0.5rem; align-items:center; }
     }
 
     /* Ähnliche Artikel — scrollable product carousel (design-system product cards) */
