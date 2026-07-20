@@ -1631,11 +1631,11 @@
       .bx-tell { height:auto !important; }
       .bx-tell-stage { position:static; height:auto; display:block; overflow:visible; }
       .bx-tell-grid { height:auto; }
-      .bx-tell-slide { position:relative; inset:auto; grid-template-columns:1fr; gap:1.75rem; padding:clamp(2.5rem,7vw,4rem) 0; }
+      .bx-tell-slide { position:relative; inset:auto; display:flex; flex-direction:column; gap:1.5rem; padding:clamp(2.5rem,7vw,4rem) 0; }
       .bx-tell-slide.rev { direction:ltr; }
-      .bx-tell-media { height:auto; width:min(700px,100%); margin-inline:auto; }
+      .bx-tell-copy { order:1; grid-column:auto; grid-row:auto; opacity:1; transform:none; pointer-events:auto; }
+      .bx-tell-media { order:2; grid-column:auto; grid-row:auto; height:auto; width:100%; margin-inline:auto; }
       .bx-tell-media img { clip-path:inset(0 round 12px) !important; -webkit-clip-path:inset(0 round 12px) !important; }
-      .bx-tell-copy { opacity:1; transform:none; pointer-events:auto; }
       .bx-tell-line { display:none; }
     }
     @media(prefers-reduced-motion:reduce){ .bx-tell-media img{ clip-path:circle(75% at 50% 50%) !important; } .bx-tell-copy{ opacity:1 !important; transform:none !important; } }
