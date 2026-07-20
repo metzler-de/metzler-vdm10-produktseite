@@ -1648,17 +1648,16 @@
     .bx-cam-card h4 { font-size:clamp(1.75rem,4.2vw,3rem); font-weight:700; line-height:1.25; margin:0 0 1.1rem; color:#fff; }
     .bx-cam-card p { font-size:1.3125rem; line-height:1.7; color:rgba(255,255,255,.75); margin:0; }
     @media(max-width:860px){
-      /* immersive: full-screen sticky video with text cards scrolling over it */
-      .bx-cam-scroll { display:block; position:relative; max-width:none; padding:0; }
-      .bx-cam-sticky { position:sticky; top:0; height:100vh; height:100svh; margin-bottom:0; z-index:0; }
-      .bx-cam-visual { width:100vw; height:100vh; height:100svh; aspect-ratio:auto; margin:0; }
-      .bx-cam-cards { position:relative; z-index:1; margin-top:-100vh; margin-top:-100svh; gap:0; padding:0; }
-      .bx-cam-card { opacity:1 !important; filter:none !important; transform:none !important; min-height:100vh; min-height:100svh; display:flex; flex-direction:column; justify-content:flex-end; padding:0 1.5rem 16vh; max-width:none; scroll-snap-align:none; scroll-snap-stop:normal; }
-      .bx-cam-card::before { display:none; }
-      .bx-cam-card::after { content:""; position:absolute; left:0; right:0; bottom:0; height:80%; background:linear-gradient(to top, rgba(0,0,0,.88) 0%, rgba(0,0,0,.5) 42%, transparent 100%); z-index:-1; pointer-events:none; }
-      .bx-cam-card .n { padding-left:0; text-shadow:0 2px 12px rgba(0,0,0,.7); }
-      .bx-cam-card h4 { font-size:1.75rem; padding-left:0; text-shadow:0 2px 14px rgba(0,0,0,.8); }
-      .bx-cam-card p { font-size:1.125rem; padding-left:0; color:rgba(255,255,255,.9); text-shadow:0 1px 10px rgba(0,0,0,.85); }
+      /* simple stacked flow: header, then video, then all text — nothing sticky */
+      .bx-cam-scroll { display:block; position:static; max-width:none; padding:1.5rem 18px clamp(3rem,7vw,5rem); }
+      .bx-cam-sticky { position:static; top:auto; height:auto; margin:0 0 2rem; z-index:auto; }
+      .bx-cam-visual { width:100%; height:auto; aspect-ratio:1/1; margin:0; }
+      .bx-cam-cards { position:static; margin-top:0; gap:2.5rem; padding:0; }
+      .bx-cam-card { opacity:1 !important; filter:none !important; transform:none !important; min-height:0; display:block; padding:0 0 0 1.25rem; max-width:none; scroll-snap-align:none; scroll-snap-stop:normal; }
+      .bx-cam-card::after { content:none; }
+      .bx-cam-card .n { text-shadow:none; }
+      .bx-cam-card h4 { font-size:1.5rem; text-shadow:none; }
+      .bx-cam-card p { font-size:1.125rem; color:rgba(255,255,255,.75); text-shadow:none; }
     }
 
     /* point-grow slider (features) */
