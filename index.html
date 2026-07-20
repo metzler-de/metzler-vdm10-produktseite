@@ -1172,6 +1172,7 @@
     .cfg-bd-title { font-size:1rem; font-weight:700; color:var(--g-900); margin-bottom:.6rem; }
     .cfg-bd-row { display:flex; justify-content:space-between; gap:1rem; font-size:0.875rem; color:var(--g-700); padding:.35rem 0; border-bottom:1px solid var(--g-100); }
     .cfg-bd-row span:last-child { font-weight:600; color:var(--g-900); white-space:nowrap; }
+    .cfg-bd-row:has(+ .cfg-bd-total) { border-bottom:none; }   /* avoid a double line above the total */
     .cfg-bd-total { border-bottom:none; border-top:2px solid var(--g-200); margin-top:.35rem; padding-top:.6rem; }
     .cfg-bd-total span { font-size:1.0625rem; font-weight:800; color:var(--g-900); }
     .cfg-bd-sub span { color:var(--g-600); font-weight:600; }
