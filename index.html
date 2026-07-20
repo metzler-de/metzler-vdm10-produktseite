@@ -1521,7 +1521,19 @@
     .bx-split.is-visible .bx-split-media img { transform:scale(1); }
     .bx-split-media.is-sm { width:min(560px,80%,66vh); }   /* 20 % smaller product shot */
     .bx-split > div:not([class]) { max-width:60%; }   /* copy column narrower, pulled toward the image */
-    @media(max-width:900px){ .bx-split{ grid-template-columns:1fr; gap:2rem; } .bx-split.rev{ direction:ltr; } .bx-split > div:not([class]){ max-width:none; } .bx-split-media{ justify-self:center; margin-inline:auto; } }
+    @media(max-width:900px){
+      .bx-split{ grid-template-columns:1fr; gap:0; }
+      .bx-split.rev{ direction:ltr; }
+      /* order on mobile: heading → picture → detail text */
+      .bx-split > div:not([class]){ display:contents; }
+      .bx-split > div:not([class]) > *{ order:4; }
+      .bx-split > div:not([class]) > .bx-eyebrow{ order:1; }
+      .bx-split > div:not([class]) > .bx-h{ order:2; }
+      .bx-split-media, .bx-split .bx-video{ order:3; margin:1.25rem auto; }
+      .bx-split-media{ justify-self:center; }
+      /* uniform detail text (lead + list same size / colour) */
+      .bx-split .bx-lead, .bx-split .bx-list li{ font-size:1rem; line-height:1.6; color:var(--g-700); }
+    }
     @media(prefers-reduced-motion:reduce){ .bx-split-media{ clip-path:none !important; } .bx-split-media img{ transform:none !important; } }
 
     /* Figma sections: centered title on top, portrait image left, copy + dot-list right (Smartphone App, Montagekasten) */
