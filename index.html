@@ -1132,7 +1132,14 @@
     .cfg-bd-toggle svg { width:1rem; height:1rem; flex-shrink:0; transition:transform .2s; }
     .cfg-count { display:inline-flex; align-items:center; justify-content:center; min-width:1.5rem; height:1.5rem; padding:0 0.45rem; margin-left:0.6rem; border-radius:var(--radius-pill); background:rgba(255,255,255,.22); font-size:0.8125rem; font-weight:700; line-height:1; }
     .cfg-bd-toggle.open svg { transform:rotate(180deg); }
-    .cfg-bd { position:absolute; left:0; bottom:calc(100% + 1rem); width:23rem; max-width:calc(100vw - 3rem); background:#fff; border:1px solid var(--g-200); border-radius:var(--radius-lg); box-shadow:var(--shadow-modal); padding:1rem 1.15rem; z-index:3; }
+    /* centered top arrow handle that opens the full-width price popup */
+    .cfg-bd-arrow { position:absolute; top:-1.15rem; left:50%; transform:translateX(-50%); z-index:4; width:2.75rem; height:2.75rem; display:flex; align-items:center; justify-content:center; background:#fff; border:1px solid var(--g-200); border-bottom:none; border-radius:var(--radius-lg) var(--radius-lg) 0 0; color:var(--teal); cursor:pointer; box-shadow:0 -0.35rem 0.9rem rgba(0,0,0,.06); transition:color .15s, background .15s; }
+    .cfg-bd-arrow:hover { background:var(--teal-50); }
+    .cfg-bd-arrow svg { width:1.35rem; height:1.35rem; transition:transform .25s ease; }
+    .cfg-bd-arrow.open svg { transform:rotate(180deg); }
+    /* full-browser-width price breakdown popup, anchored above the bar */
+    .cfg-bd { position:absolute; left:0; right:0; bottom:100%; width:100%; background:#fff; border-top:1px solid var(--g-200); box-shadow:0 -1rem 2rem rgba(0,0,0,.10); padding:1.5rem 0 1.75rem; z-index:3; }
+    .cfg-bd-content { width:100%; max-width:46rem; margin:0 auto; padding:0 24px; }
     .cfg-bd-title { font-size:1rem; font-weight:700; color:var(--g-900); margin-bottom:.6rem; }
     .cfg-bd-row { display:flex; justify-content:space-between; gap:1rem; font-size:0.875rem; color:var(--g-700); padding:.35rem 0; border-bottom:1px solid var(--g-100); }
     .cfg-bd-row span:last-child { font-weight:600; color:var(--g-900); white-space:nowrap; }
@@ -1141,6 +1148,7 @@
     .cfg-bd-sub span { color:var(--g-600); font-weight:600; }
     /* Always-visible inline configuration summary (above PayPal notice) */
     .cfg-summary { margin:1.25rem 0; padding:1.15rem 1.25rem; border:1px solid var(--g-200); border-radius:var(--radius-lg); background:#fff; }
+    #cfgSummaryBd .cfg-bd-content { max-width:none; padding:0; }
     .cfg-summary-qty { display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-top:1rem; padding-top:1rem; border-top:1px solid var(--g-200); }
     .cfg-summary-qty-lbl { font-size:0.95rem; font-weight:700; color:var(--g-900); }
     .cfg-bar-tot small { display:block; font-size:0.8125rem; color:var(--g-600); margin-bottom:0; line-height:1.1; }
@@ -1492,6 +1500,7 @@
       transition:transform 1200ms cubic-bezier(.2,.7,.2,1); will-change:transform; }
     .bx-split.is-visible .bx-split-media { clip-path:inset(0 round 8px); -webkit-clip-path:inset(0 round 8px); }
     .bx-split.is-visible .bx-split-media img { transform:scale(1); }
+    .bx-split-media.is-sm { width:min(560px,80%,66vh); }   /* 20 % smaller product shot */
     .bx-split > div:not([class]) { max-width:60%; }   /* copy column narrower, pulled toward the image */
     @media(max-width:900px){ .bx-split{ grid-template-columns:1fr; gap:2rem; } .bx-split.rev{ direction:ltr; } .bx-split > div:not([class]){ max-width:none; } .bx-split-media{ justify-self:center; margin-inline:auto; } }
     @media(prefers-reduced-motion:reduce){ .bx-split-media{ clip-path:none !important; } .bx-split-media img{ transform:none !important; } }
@@ -1530,21 +1539,22 @@
     @media(max-width:860px){ .mk { grid-template-columns:1fr; gap:2rem; } .mk-media img { max-height:380px; } }
 
     /* Smartphone-App — compact branded banner with abstract background */
-    .app-banner { position:relative; isolation:isolate; overflow:hidden; border-radius:1.75rem; padding:clamp(1.75rem,3.5vw,3rem); display:grid; grid-template-columns:minmax(0,360px) minmax(0,1fr); align-items:center; gap:clamp(1.5rem,4vw,3.25rem); color:#fff;
+    .app-banner { position:relative; isolation:isolate; overflow:hidden; border-radius:1.75rem; padding:clamp(1.75rem,3.5vw,3rem); display:grid; grid-template-columns:minmax(0,1fr) minmax(0,360px); align-items:center; gap:clamp(1.5rem,4vw,3.25rem); color:#fff;
       background:
         radial-gradient(1100px 560px at 90% -18%, rgba(92,219,211,.24), transparent 58%),
         radial-gradient(820px 520px at 0% 118%, rgba(0,0,0,.4), transparent 60%),
         linear-gradient(130deg, var(--teal-900) 0%, var(--teal) 56%, #017574 100%);
       box-shadow:0 30px 60px -22px rgba(1,41,42,.6), inset 0 1px 0 rgba(255,255,255,.08); }
     .app-banner-shapes { position:absolute; inset:0; width:100%; height:100%; z-index:0; pointer-events:none; }
-    .app-banner-media { position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; gap:1.25rem; }
+    .app-banner-media { position:relative; z-index:1; order:2; display:flex; flex-direction:column; align-items:center; gap:1.25rem; }
+    .app-banner-body { order:1; }
     .app-banner-media::before { content:""; position:absolute; left:50%; top:38%; transform:translate(-50%,-50%); width:145%; height:60%; background:radial-gradient(ellipse at center,rgba(92,219,211,.30),transparent 62%); filter:blur(10px); z-index:0; pointer-events:none; }
     /* colourful abstract aura behind the phone */
     .app-banner-media::after { content:""; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:160%; height:122%; z-index:0; pointer-events:none; filter:blur(22px); opacity:.7;
       background:
-        radial-gradient(58% 55% at 50% 2%, rgba(168,85,247,.95), transparent 100%),
-        radial-gradient(55% 55% at 4% 52%, rgba(236,72,153,.9), transparent 100%),
-        radial-gradient(55% 55% at 96% 86%, rgba(56,189,248,.9), transparent 100%); }
+        radial-gradient(58% 55% at 50% 2%, rgba(92,219,211,.9), transparent 100%),
+        radial-gradient(55% 55% at 4% 52%, rgba(1,117,116,.9), transparent 100%),
+        radial-gradient(55% 55% at 96% 86%, rgba(1,82,83,.95), transparent 100%); }
     .app-banner-media img { position:relative; z-index:1; width:auto; max-width:100%; max-height:clamp(360px,48vh,480px); object-fit:contain; filter:drop-shadow(0 26px 48px rgba(0,0,0,.55)); }
     .app-banner-body { position:relative; z-index:1; max-width:44rem; }
     .app-banner-eyebrow { display:inline-flex; align-items:center; gap:0.45rem; font-size:0.75rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--mint); margin-bottom:0.75rem; }
@@ -2222,14 +2232,6 @@
             <!-- Always-visible configuration summary + quantity — sits above the PayPal notice -->
             <div class="cfg-summary" id="cfgSummary" hidden>
               <div id="cfgSummaryBd"></div>
-              <div class="cfg-summary-qty">
-                <span class="cfg-summary-qty-lbl">Menge</span>
-                <div class="qty-counter qty-counter-lg" role="group" aria-label="Menge">
-                  <button class="qty-btn" id="cfgQtyMinus" type="button" aria-label="Menge verringern">−</button>
-                  <span class="qty-value" id="cfgQtyVal">1</span>
-                  <button class="qty-btn" id="cfgQtyPlus" type="button" aria-label="Menge erhöhen">+</button>
-                </div>
-              </div>
             </div>
 
             <!-- PayPal financing + shipping facts — revealed once a colour is chosen; stay visible under the configurator too -->
@@ -2578,7 +2580,7 @@
     <section data-panel="beschreibung" class="bx">
       <div class="bx-wrap">
         <div class="bx-split">
-          <div class="bx-split-media"><img src="pictures/beschreibung/q-touchscreen.png" alt="Metzler Touchscreen-Innenstation"></div>
+          <div class="bx-split-media is-sm"><img src="pictures/beschreibung/q-touchscreen.png" alt="Metzler Touchscreen-Innenstation"></div>
           <div>
             <p class="bx-eyebrow reveal">Home · Pro · Ultra</p>
             <h2 class="bx-h reveal" data-delay="1">Touchscreen-Innenstationen</h2>
@@ -2672,7 +2674,7 @@
     <!-- 11 · Metzler Talk video -->
     <section data-panel="beschreibung" class="bx" style="padding-bottom:1rem;">
       <div class="bx-wrap">
-        <div class="bx-split">
+        <div class="bx-split rev">
           <div class="bx-video reveal" data-rev="right" data-expert-open>
             <img src="pictures/beschreibung/q-talk.png" alt="Metzler Talk – Video mit unseren Sprechanlagen-Experten">
             <span class="bx-video-play"><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></span>
@@ -3751,17 +3753,22 @@
 
   <!-- ════════ CONFIGURATOR STICKY BAR (shown while configuring) ════════ -->
   <div class="cfg-bar" id="cfgBar" hidden>
+    <button class="cfg-bd-arrow" id="cfgBdToggle" type="button" aria-label="Preisdetails anzeigen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg></button>
+    <div class="cfg-bd" id="cfgBreakdown" hidden></div>
     <div class="wrap cfg-bar-inner">
-      <div class="cfg-bd" id="cfgBreakdown" hidden></div>
       <div class="cfg-bar-tot">
         <small class="cfg-bar-stock"><span class="dot"></span>Sofort verfügbar</small>
         <div class="cfg-bar-price-row">
           <b id="cfgTotal">699,00 €</b>
-          <button class="cfg-bd-toggle" id="cfgBdToggle" type="button" aria-label="Gewählte Artikel anzeigen">Details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg></button>
         </div>
       </div>
       <div class="cfg-bar-actions">
-        <button class="btn btn-primary" id="cfgToCart" type="button">In den Warenkorb <span class="cfg-count" id="cfgCount" aria-label="Artikel im Warenkorb">1</span></button>
+        <div class="qty-counter qty-counter-lg" role="group" aria-label="Menge">
+          <button class="qty-btn" id="cfgQtyMinus" type="button" aria-label="Menge verringern">−</button>
+          <span class="qty-value" id="cfgQtyVal">1</span>
+          <button class="qty-btn" id="cfgQtyPlus" type="button" aria-label="Menge erhöhen">+</button>
+        </div>
+        <button class="btn btn-primary" id="cfgToCart" type="button">In den Warenkorb</button>
       </div>
     </div>
   </div>
@@ -5104,13 +5111,14 @@
         var step=STEPS.find(function(s){return s.key===k;}); var map=selMap(k);
         Object.keys(map).forEach(function(id){ if(!map[id]||id==='none')return; var o=step.options.find(function(x){return x.id===id;}); if(!o)return; var qty=(k==='innen')?(S.innenQty[id]||1):1; rows.push([o.name+(qty>1?' · '+qty+'×':''), o.price*qty]); });
       });
-      var html='<div class="cfg-bd-title">Ihre Konfiguration</div>';
+      var html='<div class="cfg-bd-content"><div class="cfg-bd-title">Ihre Konfiguration</div>';
       rows.forEach(function(r){ html+='<div class="cfg-bd-row"><span>'+r[0]+'</span><span>'+(r[1]>0?eur(r[1]):'inklusive')+'</span></div>'; });
       if(S.qty>1){
         html+='<div class="cfg-bd-row cfg-bd-sub"><span>Zwischensumme · pro Set</span><span>'+eur(total())+'</span></div>';
         html+='<div class="cfg-bd-row cfg-bd-sub"><span>Menge</span><span>× '+S.qty+'</span></div>';
       }
       html+='<div class="cfg-bd-row cfg-bd-total"><span>Gesamt · inkl. 19 % USt.</span><span>'+eur(grandTotal())+'</span></div>';
+      html+='</div>';
       return html;
     }
     function grandTotal(){ return total() * (S.qty||1); }
