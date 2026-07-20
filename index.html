@@ -56,6 +56,7 @@
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
     html { scroll-behavior:smooth; scroll-snap-type:y proximity; }
     body {
+      overflow-x:clip;
       font-family:var(--font);
       -webkit-font-smoothing:antialiased;
       background:var(--paper);
@@ -1447,6 +1448,10 @@
     .reveal[data-rev="right"] { transform:translateX(3rem); }
     .reveal[data-rev="zoom"]  { transform:scale(.92); }
     .reveal.in[data-rev]      { transform:none; }
+    /* mobile: slide reveals vertically to avoid horizontal overflow */
+    @media(max-width:768px){
+      .reveal[data-rev="left"], .reveal[data-rev="right"] { transform:translateY(1.5rem); }
+    }
     .reveal[data-delay="1"]{ transition-delay:.1s; } .reveal[data-delay="2"]{ transition-delay:.2s; }
     .reveal[data-delay="3"]{ transition-delay:.3s; } .reveal[data-delay="4"]{ transition-delay:.4s; }
     @media(prefers-reduced-motion:reduce){ .reveal{ opacity:1 !important; transform:none !important; } }
