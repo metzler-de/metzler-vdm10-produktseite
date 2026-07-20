@@ -418,7 +418,7 @@
     .color-drawer { position:fixed; top:0; right:0; bottom:0; z-index:211; width:420px; max-width:92vw; background:#fff; transform:translateX(100%); transition:transform .32s cubic-bezier(.4,0,.2,1); display:flex; flex-direction:column; }
     .color-drawer.open { transform:none; box-shadow:-0.5rem 0 2rem rgba(0,0,0,.15); }
     @media(max-width:768px){
-      .color-drawer { top:auto; left:0; right:0; bottom:0; width:100%; max-width:none; max-height:70vh; max-height:70svh; transform:translateY(100%); border-radius:1rem 1rem 0 0; box-shadow:none; }
+      .color-drawer { top:auto; left:0; right:0; bottom:0; width:100%; max-width:none; max-height:80vh; max-height:80svh; transform:translateY(100%); border-radius:1rem 1rem 0 0; box-shadow:none; }
       .color-drawer.open { box-shadow:0 -0.5rem 2rem rgba(0,0,0,.18); }
       .color-drawer.garantie-drawer { width:100%; }
     }
@@ -963,10 +963,16 @@
     .em-card-chev { width:1.25rem; height:1.25rem; flex-shrink:0; color:var(--teal); transition:transform .15s; }
     .em-card:hover .em-card-chev { transform:translateX(3px); }
     .em-mobile-hotline { display:none; }
+    .em-mhead { display:none; }
     @media(max-width:768px){
       .em-dialog { flex-direction:column; }
       .em-hero { display:none; }
       .em-head-t { font-size:1.25rem; }
+      /* fixed header like the other bottom-sheet popups */
+      .em-mhead { display:flex; align-items:center; flex-shrink:0; padding:1.25rem 1.5rem; border-bottom:1px solid var(--g-200); }
+      .em-mhead span { font-size:1.2rem; font-weight:700; color:var(--g-900); letter-spacing:-0.01em; }
+      .em-eyebrow { display:none; }
+      .em-body { padding-top:1.5rem; }
       .em-mobile-hotline { display:flex; flex-direction:column; gap:0.25rem; margin-top:1.375rem; padding-top:1.125rem; border-top:1px solid var(--g-100); }
       .em-mobile-hotline .k { font-size:0.6875rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--teal); }
       .em-mobile-hotline .num { font-size:1.125rem; font-weight:700; color:var(--black); text-decoration:none; }
@@ -974,7 +980,7 @@
       .em-mobile-hotline .mail { font-size:0.875rem; color:var(--black); margin-top:0.25rem; text-decoration:none; }
       /* Bottom-sheet modals */
       .em-overlay, .zv-overlay { align-items:flex-end; padding:0; }
-      .em-dialog, .zv-dialog { max-width:none; width:100%; max-height:70vh; max-height:70svh; border-radius:1rem 1rem 0 0; animation:sheetUp .3s cubic-bezier(.4,0,.2,1); }
+      .em-dialog, .zv-dialog { max-width:none; width:100%; max-height:80vh; max-height:80svh; border-radius:1rem 1rem 0 0; animation:sheetUp .3s cubic-bezier(.4,0,.2,1); }
     }
     @keyframes sheetUp { from { transform:translateY(100%); } to { transform:translateY(0); } }
     .verified { display:inline-flex; align-items:center; gap:0.3rem; color:var(--green); }
@@ -3113,6 +3119,7 @@
       <!-- Right white panel -->
       <div class="em-panel">
         <button class="em-close" id="expertClose" type="button" aria-label="Schließen"><svg viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <div class="em-mhead"><span>Kontakt &amp; Service</span></div>
         <div class="em-body">
           <span class="em-eyebrow">Kontakt &amp; Service</span>
           <h4 class="em-body-h">Wie können wir Ihnen helfen?</h4>
