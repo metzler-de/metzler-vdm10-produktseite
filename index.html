@@ -1323,7 +1323,7 @@
     .pd-body { display:flex; overflow:hidden; flex-grow:1; min-height:0; }
     .pd-media { flex:0 0 50%; background:#fff; display:flex; align-items:center; justify-content:center; padding:2.5rem; border-right:1px solid var(--g-100); box-sizing:border-box; }
     .pd-media img { width:100%; height:auto; max-height:24rem; object-fit:contain; display:block; }
-    .pd-info { flex:0 0 50%; padding:3.5rem 2rem 2rem; overflow-y:auto; display:flex; flex-direction:column; gap:1rem; box-sizing:border-box; }
+    .pd-info { flex:0 0 50%; padding:2rem 2rem; overflow-y:auto; display:flex; flex-direction:column; gap:1rem; box-sizing:border-box; }
     .pd-title { margin:0; font-size:1.25rem; font-weight:700; color:var(--black); line-height:1.35; }
     .pd-rating { display:flex; align-items:center; gap:0.375rem; }
     .pd-rating .stars svg { width:1rem; height:1rem; }
@@ -1333,6 +1333,7 @@
     .pd-spec td:first-child { padding-left:0; }
     .pd-spec td:last-child { border-right:none; padding-right:0; text-align:right; }
     .pd-spec td:only-child { text-align:left; }
+    .pd-spec td:nth-child(2):not(:last-child) { text-align:center; }
     .pd-spec-k { color:var(--g-500); margin-bottom:0.25rem; }
     .pd-spec-v { font-weight:700; color:var(--black); }
     .pd-price-row { display:flex; align-items:baseline; gap:0.625rem; }
@@ -1340,7 +1341,7 @@
     .pd-price-old { font-size:0.875rem; color:var(--g-500); text-decoration:line-through; }
     .pd-tax { font-size:0.75rem; color:var(--g-600); margin-top:0.125rem; }
     .pd-stock { font-size:0.875rem; color:var(--green); font-weight:700; }
-    .pd-desc { margin:0; font-size:1rem; color:var(--g-700); line-height:1.6; }
+    .pd-desc { margin:0; font-size:1rem; color:var(--black); line-height:1.6; }
     .pd-desc p { margin:0 0 0.75rem; }
     .pd-desc p:last-child { margin-bottom:0; }
     .pd-desc ul { margin:0.25rem 0 0; padding-left:1.1rem; display:flex; flex-direction:column; gap:0.35rem; }
@@ -2744,6 +2745,8 @@
         </div>
       </div>
     </section>
+
+    <div class="bx-divider"></div>
 
     <!-- 11 · Metzler Talk video -->
     <section data-panel="beschreibung" class="bx" style="padding-bottom:1rem;">
