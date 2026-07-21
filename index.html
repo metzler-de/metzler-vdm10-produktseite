@@ -883,7 +883,7 @@
 
     /* review-detail popup (card click) */
     .rdet-overlay { position:fixed; inset:0; z-index:10000; background:rgba(0,0,0,.5); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); display:flex; align-items:center; justify-content:center; padding:1.5rem; }
-    .rdet-dialog { width:100%; max-width:40rem; max-height:88vh; background:#fff; border-radius:var(--radius-lg); box-shadow:var(--shadow-modal); overflow:hidden; display:flex; flex-direction:column; animation:emIn .2s ease; }
+    .rdet-dialog { width:100%; max-width:40rem; max-height:88vh; background:#fff; border-radius:0.75rem; box-shadow:var(--shadow-modal); overflow:hidden; display:flex; flex-direction:column; animation:emIn .2s ease; }
     .rdet-media { width:100%; max-height:22rem; background:var(--g-100); overflow:hidden; flex-shrink:0; }
     .rdet-media img { width:100%; height:100%; max-height:22rem; object-fit:cover; display:block; }
     .rdet-body { padding:1.5rem; overflow-y:auto; position:relative; }
@@ -899,7 +899,7 @@
 
     /* ══════════ Zahlung & Versand modal (design system) ══════════ */
     .zv-overlay { position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,.45); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); display:flex; align-items:center; justify-content:center; padding:1rem; }
-    .zv-dialog { width:100%; max-width:60rem; max-height:90vh; background:#fff; border-radius:var(--radius-lg); box-shadow:var(--shadow-modal); overflow:hidden; display:flex; flex-direction:column; animation:emIn .2s ease; }
+    .zv-dialog { width:100%; max-width:60rem; max-height:90vh; background:#fff; border-radius:0.75rem; box-shadow:var(--shadow-modal); overflow:hidden; display:flex; flex-direction:column; animation:emIn .2s ease; }
     .zv-head { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:1.25rem 1.5rem; border-bottom:1px solid var(--g-200); flex-shrink:0; }
     .zv-head-t { font-size:1.3rem; font-weight:700; line-height:1.3; letter-spacing:-0.015em; color:var(--black); }
     .zv-close { width:2rem; height:2rem; border-radius:var(--radius); background:transparent; border:none; color:#6A6A6A; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; transition:background .15s; }
@@ -932,7 +932,7 @@
 
     /* ══════════ Experten-Kontakt & Service modal (design system LG-D) ══════════ */
     .em-overlay { position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,.45); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); display:flex; align-items:center; justify-content:center; padding:1rem; }
-    .em-dialog { width:100%; max-width:52rem; max-height:90vh; background:var(--white); border-radius:var(--radius-lg); box-shadow:var(--shadow-modal); overflow:hidden; display:flex; flex-direction:row; animation:emIn .2s ease; }
+    .em-dialog { width:100%; max-width:52rem; max-height:90vh; background:var(--white); border-radius:0.75rem; box-shadow:var(--shadow-modal); overflow:hidden; display:flex; flex-direction:row; animation:emIn .2s ease; }
     @keyframes emIn { from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:none;} }
     .em-hero { flex:0 0 19rem; background:linear-gradient(160deg, var(--teal-900) 0%, var(--teal) 100%); padding:1.5rem; display:flex; flex-direction:column; gap:1.375rem; box-sizing:border-box; overflow-y:auto; color:#fff; }
     .em-hero-h { margin:0; font-size:2.125rem; font-weight:700; line-height:1.1; letter-spacing:-0.01em; color:#fff; }
@@ -984,7 +984,7 @@
       .em-dialog, .zv-dialog { max-width:none; width:100%; max-height:80vh; max-height:80svh; border-radius:1rem 1rem 0 0; animation:sheetUp .3s cubic-bezier(.4,0,.2,1); }
       /* form modals stay centered, not bottom sheets */
       #reviewModal, #questionModal { align-items:center; padding:1rem; }
-      #reviewModal .zv-dialog, #questionModal .zv-dialog { max-height:90vh; border-radius:var(--radius-lg); animation:emIn .2s ease; }
+      #reviewModal .zv-dialog, #questionModal .zv-dialog { max-height:90vh; border-radius:0.75rem; animation:emIn .2s ease; }
     }
     @keyframes sheetUp { from { transform:translateY(100%); } to { transform:translateY(0); } }
     .verified { display:inline-flex; align-items:center; gap:0.3rem; color:var(--green); }
