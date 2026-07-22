@@ -597,6 +597,8 @@
     .pdp-tabs-row::-webkit-scrollbar { display:none; }
     .pdp-tab { position:relative; flex:0 0 auto; padding:1.2rem 1.1rem; font-size:0.9375rem; font-weight:600; color:var(--g-600); white-space:nowrap; background:none; border:none; cursor:pointer; font-family:inherit; text-decoration:none; transition:color .15s; }
     .pdp-tab:hover { color:var(--g-900); }
+    .pdp-tab:focus { outline:none; }
+    .pdp-tab:focus-visible { outline:2px solid var(--teal); outline-offset:-4px; border-radius:var(--radius); }
     .pdp-tab::after { content:''; position:absolute; left:1.1rem; right:1.1rem; bottom:0; height:1px; background:var(--teal); transform:scaleX(0); transition:transform .2s ease, height .2s ease; transform-origin:center; }
     .pdp-tab.active { color:var(--teal); }
     .pdp-tab.active::after { transform:scaleX(1); }
@@ -821,7 +823,7 @@
     .rev-item-meta .verified svg { width:0.9rem; height:0.9rem; }
     .rev-item .stars { display:inline-flex; margin-bottom:0.5rem; }
     .rev-item .stars svg { width:0.95rem; height:0.95rem; }
-    .rev-item p { font-size:0.9375rem; color:var(--g-700); line-height:1.6; margin:0; }
+    .rev-item p { font-size:0.9375rem; color:var(--black); line-height:1.6; margin:0; }
     .rev-photos { display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.9rem; }
     .rev-photo { width:5rem; height:5rem; border-radius:var(--radius); overflow:hidden; border:1px solid var(--g-200); background:var(--g-100); cursor:zoom-in; padding:0; transition:box-shadow .15s; }
     .rev-photo:hover { box-shadow:0 0 0 2px var(--teal); }
@@ -854,7 +856,7 @@
     .rpop-meta { margin:0; font-size:0.75rem; color:#A1A1A1; display:inline-flex; align-items:center; gap:0.3rem; }
     .rpop-meta .verified { display:inline-flex; align-items:center; gap:0.25rem; color:var(--green); font-weight:600; }
     .rpop-meta .verified svg { width:0.9rem; height:0.9rem; }
-    .rpop-text { margin:0; font-size:1rem; color:#54545C; line-height:1.65; }
+    .rpop-text { margin:0; font-size:1rem; color:var(--black); line-height:1.65; }
     /* mobile — fullscreen, stacked (design-system "Kundenfoto & Bewertung") */
     @media(max-width:768px){
       .rpop { padding:0; }
@@ -1546,6 +1548,8 @@
     /* ══════════════ BESCHREIBUNG · animated product story ══════════════ */
     .bx { --bx-max:1600px; }
     section[data-panel="beschreibung"].bx { background:#fff; }
+    section[data-panel="produktmerkmale"].bx { background:#fff; }
+    section[data-panel="beschreibung"] .bx-lead { color:var(--black); }
     .bx-wrap { max-width:var(--bx-max); margin:0 auto; padding:0 40px; }
     @media(max-width:1024px){ .bx-wrap { padding:0 24px; } }
     @media(max-width:768px){ .bx-wrap { padding:0 18px; } }
