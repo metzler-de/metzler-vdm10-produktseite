@@ -626,7 +626,8 @@
     body[data-active-tab="beschreibung"] section[data-panel="beschreibung"],
     body[data-active-tab="bewertungen"] section[data-panel="bewertungen"],
     body[data-active-tab="downloads"] section[data-panel="downloads"],
-    body[data-active-tab="technische-details"] section[data-panel="technische-details"] { display:block; }
+    body[data-active-tab="technische-details"] section[data-panel="technische-details"],
+    body[data-active-tab="produktmerkmale"] section[data-panel="produktmerkmale"] { display:block; }
 
     /* ══════════ Generic section ══════════ */
     .section { padding:4.5rem 0; }
@@ -1609,10 +1610,9 @@
     .mk-section { padding-block:clamp(4.5rem,9vw,7.5rem); }
     .mk { display:grid; grid-template-columns:minmax(0,460px) minmax(0,1fr); gap:clamp(2.5rem,6vw,5rem); align-items:center; }
     .mk-media { position:relative; border-radius:1.5rem; padding:clamp(1.75rem,3.5vw,3rem); display:flex; align-items:center; justify-content:center; overflow:hidden;
-      background:radial-gradient(120% 120% at 30% 15%, #FFFFFF 0%, #EEF2F4 52%, #DFE7E9 100%);
-      box-shadow:0 24px 50px -24px rgba(1,41,42,.28); }
-    .mk-media::before { content:""; position:absolute; right:-18%; bottom:-22%; width:60%; height:60%; border-radius:50%; background:radial-gradient(circle,rgba(1,82,83,.10),transparent 70%); pointer-events:none; }
-    .mk-media img { position:relative; z-index:1; width:auto; max-width:100%; max-height:clamp(360px,52vh,520px); object-fit:contain; filter:drop-shadow(0 30px 48px rgba(0,0,0,.24)); }
+      background:#fff; border:1px solid var(--g-200);
+      box-shadow:0 20px 44px -26px rgba(1,41,42,.22); }
+    .mk-media img { position:relative; z-index:1; width:auto; max-width:100%; max-height:clamp(360px,52vh,520px); object-fit:contain; }
     .mk-eyebrow { display:inline-flex; align-items:center; gap:0.5rem; font-size:0.75rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--teal); margin:0 0 0.9rem; }
     .mk-eyebrow svg { width:1.05rem; height:1.05rem; }
     .mk-h { font-size:clamp(1.75rem,4.2vw,3rem); font-weight:700; letter-spacing:-0.02em; line-height:1.12; color:var(--black); margin:0 0 1.1rem; }
@@ -1624,15 +1624,15 @@
     @media(max-width:860px){ .mk { grid-template-columns:1fr; gap:2rem; } .mk-media img { max-height:380px; } }
 
     /* Smartphone-App — compact branded banner with abstract background */
-    .app-banner { position:relative; isolation:isolate; overflow:visible; margin-top:clamp(3rem,9vw,8.5rem); border-radius:1.75rem; padding:clamp(1.75rem,3.5vw,3rem); display:grid; grid-template-columns:minmax(0,1fr) minmax(0,460px); align-items:center; gap:clamp(1.5rem,4vw,3.25rem); color:#fff;
+    .app-banner { position:relative; isolation:isolate; overflow:hidden; border-radius:1.75rem; padding:clamp(1.75rem,3.5vw,3rem); display:grid; grid-template-columns:minmax(0,1fr) minmax(0,400px); align-items:stretch; gap:clamp(1.5rem,4vw,3.25rem); color:#fff;
       background:
         radial-gradient(1100px 560px at 90% -18%, rgba(92,219,211,.24), transparent 58%),
         radial-gradient(820px 520px at 0% 118%, rgba(0,0,0,.4), transparent 60%),
         linear-gradient(130deg, var(--teal-900) 0%, var(--teal) 56%, #017574 100%);
       box-shadow:0 30px 60px -22px rgba(1,41,42,.6), inset 0 1px 0 rgba(255,255,255,.08); }
     .app-banner-shapes { position:absolute; inset:0; width:100%; height:100%; z-index:0; pointer-events:none; }
-    .app-banner-media { position:absolute; right:clamp(1rem,3vw,2.75rem); bottom:0; z-index:1; width:clamp(300px,30vw,430px); display:flex; flex-direction:column; align-items:center; }
-    .app-banner-body { order:1; }
+    .app-banner-media { position:relative; z-index:1; order:2; align-self:end; justify-self:center; display:flex; flex-direction:column; align-items:center; }
+    .app-banner-body { order:1; align-self:center; }
     .app-banner-media::before { content:""; position:absolute; left:50%; top:38%; transform:translate(-50%,-50%); width:145%; height:60%; background:radial-gradient(ellipse at center,rgba(92,219,211,.30),transparent 62%); filter:blur(10px); z-index:0; pointer-events:none; }
     /* colourful abstract aura behind the phone */
     .app-banner-media::after { content:""; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:160%; height:122%; z-index:0; pointer-events:none; filter:blur(22px); opacity:.7;
@@ -1640,7 +1640,7 @@
         radial-gradient(58% 55% at 50% 2%, rgba(92,219,211,.9), transparent 100%),
         radial-gradient(55% 55% at 4% 52%, rgba(1,117,116,.9), transparent 100%),
         radial-gradient(55% 55% at 96% 86%, rgba(1,82,83,.95), transparent 100%); }
-    .app-banner-media img { position:relative; z-index:1; width:auto; height:auto; max-width:100%; max-height:clamp(520px,48vw,720px); object-fit:contain; filter:drop-shadow(0 26px 48px rgba(0,0,0,.55)); }
+    .app-banner-media img { position:relative; z-index:1; width:auto; height:auto; max-width:100%; max-height:clamp(340px,38vw,540px); object-fit:contain; filter:drop-shadow(0 26px 48px rgba(0,0,0,.5)); }
     .app-banner-body { position:relative; z-index:1; max-width:44rem; }
     .app-banner-eyebrow { display:inline-flex; align-items:center; gap:0.45rem; font-size:0.75rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--mint); margin-bottom:0.75rem; }
     .app-banner-eyebrow svg { width:1rem; height:1rem; }
@@ -1714,7 +1714,7 @@
     @media(max-width:1024px){ .bx-cam-scroll { padding-left:24px; padding-right:24px; } }
     @media(max-width:768px){ .bx-cam-scroll { padding-left:18px; padding-right:18px; } }
     @media(max-width:860px){ .bx-cam-scroll{ grid-template-columns:1fr; } }
-    .bx-cam-sticky { position:sticky; top:0; height:100vh; display:flex; align-items:center; align-self:start; }
+    .bx-cam-sticky { position:sticky; top:64px; height:calc(100vh - 64px); display:flex; align-items:center; align-self:start; }
     @media(max-width:860px){ .bx-cam-sticky{ top:5rem; margin-bottom:1.5rem; } }
     .bx-cam-visual { position:relative; width:min(100%, calc(100vh - 170px)); aspect-ratio:1/1; margin-inline:0 auto; overflow:hidden; }
     .bx-cam-visual img, .bx-cam-visual video { width:100%; height:100%; object-fit:cover; display:block; }
@@ -1763,11 +1763,10 @@
     /* modern chapter number — accent line + large figure */
     .bx-tell-badge { display:none; }
     /* vertical progress rail on the right side of the picture */
-    .bx-tell-line { position:absolute; right:clamp(0.75rem,1.6vw,1.6rem); top:50%; left:auto; bottom:auto; transform:translateY(-50%); width:auto; height:auto; display:flex; flex-direction:column; gap:0.65rem; padding:0; z-index:6; }
-    .bx-tell-seg { flex:none; width:5px; height:2.5rem; padding:0; border:none; background:rgba(255,255,255,.4); border-radius:999px; cursor:pointer; position:relative; overflow:hidden; transition:width .2s ease, background .2s ease; box-shadow:0 1px 4px rgba(0,0,0,.25); }
-    .bx-tell-seg:hover { background:rgba(255,255,255,.6); }
-    .bx-tell-seg.on { width:7px; }
-    .bx-tell-seg-fill { position:absolute; inset:0; background:linear-gradient(180deg,var(--mint),var(--teal)); border-radius:999px; transform:scaleY(0); transform-origin:top; transition:transform .12s linear; }
+    .bx-tell-line { position:absolute; right:clamp(0.75rem,1.6vw,1.6rem); top:50%; left:auto; bottom:auto; transform:translateY(-50%); width:auto; height:auto; display:flex; flex-direction:column; gap:0.5rem; padding:0; z-index:6; }
+    .bx-tell-seg { flex:none; width:2px; height:2.25rem; padding:0; border:none; background:rgba(255,255,255,.28); border-radius:2px; cursor:pointer; position:relative; overflow:hidden; transition:background .2s ease; }
+    .bx-tell-seg:hover { background:rgba(255,255,255,.5); }
+    .bx-tell-seg-fill { position:absolute; inset:0; background:var(--mint); border-radius:2px; transform:scaleY(0); transform-origin:top; transition:transform .12s linear; }
     @media(max-width:900px){
       .bx-tell { height:auto !important; }
       .bx-tell-stage { position:static; height:auto; display:block; overflow:visible; }
@@ -2456,6 +2455,7 @@
           <a href="#bewertungen" class="pdp-tab" data-tab="bewertungen">Bewertungen (63)</a>
           <a href="#downloads" class="pdp-tab" data-tab="downloads">Downloads (7)</a>
           <a href="#technische-details" class="pdp-tab" data-tab="technische-details">Technische Details</a>
+          <a href="#produktmerkmale" class="pdp-tab" data-tab="produktmerkmale">Produktmerkmale</a>
         </div>
         <div class="pdp-tab-actions">
           <button type="button" class="pdp-ask-toggle" id="pdpAskToggle" aria-haspopup="true" aria-expanded="false">
@@ -2786,10 +2786,8 @@
       </div>
     </section>
 
-    <div class="bx-divider"></div>
-
-    <!-- 12 · Produktdaten table (design-system table style) -->
-    <section data-panel="beschreibung" class="bx" style="padding-block:clamp(2.5rem,5vw,4rem);">
+    <!-- 12 · Produktdaten table — own tab "Produktmerkmale" -->
+    <section data-panel="produktmerkmale" id="produktmerkmale" class="bx" style="padding-block:clamp(2.5rem,5vw,4rem);scroll-margin-top:140px;">
       <div class="bx-wrap">
         <p class="bx-eyebrow reveal">Auf einen Blick</p>
         <h2 class="bx-h reveal" data-delay="1" style="margin-bottom:1.75rem;">Produktdaten</h2>
