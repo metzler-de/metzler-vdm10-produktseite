@@ -1161,7 +1161,7 @@
     .cfg-tip.show { opacity:1; transform:translate(-50%,-50%) scale(1.02); }
 
     /* sticky bottom bar (shown while configuring) */
-    .cfg-bar { position:fixed; bottom:0; left:0; right:0; z-index:80; background:#fff; border-top:1px solid var(--g-200); box-shadow:0 -0.25rem 1rem rgba(0,0,0,.08); padding:0.85rem 0; }
+    .cfg-bar { position:fixed; bottom:0; left:0; right:0; z-index:80; background:#fff; border-top:1px solid var(--g-200); box-shadow:0 -0.25rem 1rem rgba(0,0,0,.08); padding:0.5rem 0; }
     .cfg-bar-inner { position:relative; display:flex; align-items:center; justify-content:space-between; gap:1.5rem; }
     .cfg-bd-toggle { flex-shrink:0; display:inline-flex; align-items:center; gap:0.35rem; padding:0.4rem 0.85rem; background:var(--paper); border:1px solid var(--g-200); border-radius:var(--radius-pill); color:var(--teal); font-family:inherit; font-size:0.875rem; font-weight:600; cursor:pointer; transition:background .15s, color .15s, border-color .15s; }
     .cfg-bd-toggle:hover { background:var(--teal); color:#fff; border-color:var(--teal); }
@@ -1169,13 +1169,13 @@
     .cfg-count { display:inline-flex; align-items:center; justify-content:center; min-width:1.5rem; height:1.5rem; padding:0 0.45rem; margin-left:0.6rem; border-radius:var(--radius-pill); background:rgba(255,255,255,.22); font-size:0.8125rem; font-weight:700; line-height:1; }
     .cfg-bd-toggle.open svg { transform:rotate(180deg); }
     /* centered top arrow handle that opens the full-width price popup */
-    .cfg-bd-arrow { position:absolute; top:-1.35rem; left:50%; transform:translateX(-50%); z-index:4; width:3.25rem; height:1.4rem; display:flex; align-items:center; justify-content:center; background:#fff; border:1px solid var(--g-200); border-bottom:none; border-radius:var(--radius) var(--radius) 0 0; color:var(--teal); cursor:pointer; box-shadow:0 -0.35rem 0.9rem rgba(0,0,0,.06); transition:color .15s, background .15s; }
-    .cfg-bd-arrow:hover { background:var(--teal-50); }
-    .cfg-bd-arrow svg { width:1.1rem; height:1.1rem; transition:transform .25s ease; }
+    .cfg-bd-arrow { flex:0 0 auto; width:2rem; height:2rem; display:inline-flex; align-items:center; justify-content:center; background:var(--paper); border:1px solid var(--g-200); border-radius:50%; color:var(--teal); cursor:pointer; padding:0; transition:color .15s, background .15s, border-color .15s; }
+    .cfg-bd-arrow:hover { background:var(--teal); color:#fff; border-color:var(--teal); }
+    .cfg-bd-arrow svg { width:1.05rem; height:1.05rem; transition:transform .25s ease; }
     .cfg-bd-arrow.open svg { transform:rotate(180deg); }
-    /* full-browser-width price breakdown popup, anchored above the bar */
-    .cfg-bd { position:absolute; left:0; right:0; bottom:100%; width:100%; background:#fff; border-top:1px solid var(--g-200); box-shadow:0 -1rem 2rem rgba(0,0,0,.10); padding:1.5rem 0 1.75rem; z-index:3; }
-    .cfg-bd-content { width:100%; max-width:46rem; margin:0 auto; padding:0 24px; }
+    /* price breakdown popup — left-anchored card above the bar */
+    .cfg-bd { position:absolute; left:0; right:auto; bottom:calc(100% + 0.85rem); width:auto; min-width:min(20rem, calc(100vw - 2rem)); max-width:min(26rem, calc(100vw - 1.5rem)); background:#fff; border:1px solid var(--g-200); border-radius:var(--radius-lg); box-shadow:var(--shadow-modal); padding:1.15rem 1.35rem 1.35rem; z-index:5; }
+    .cfg-bd-content { width:100%; max-width:none; margin:0; padding:0; }
     .cfg-bd-title { font-size:1rem; font-weight:700; color:var(--g-900); margin-bottom:.6rem; }
     .cfg-bd-row { display:flex; justify-content:space-between; gap:1rem; font-size:0.875rem; color:var(--g-700); padding:.35rem 0; border-bottom:1px solid var(--g-100); }
     .cfg-bd-row span:last-child { font-weight:600; color:var(--g-900); white-space:nowrap; }
@@ -3840,13 +3840,13 @@
 
   <!-- ════════ CONFIGURATOR STICKY BAR (shown while configuring) ════════ -->
   <div class="cfg-bar" id="cfgBar" hidden>
-    <button class="cfg-bd-arrow" id="cfgBdToggle" type="button" aria-label="Preisdetails anzeigen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg></button>
-    <div class="cfg-bd" id="cfgBreakdown" hidden></div>
     <div class="wrap cfg-bar-inner">
+      <div class="cfg-bd" id="cfgBreakdown" hidden></div>
       <div class="cfg-bar-tot">
         <small class="cfg-bar-stock"><span class="dot"></span>Sofort verfügbar</small>
         <div class="cfg-bar-price-row">
           <b id="cfgTotal">699,00 €</b>
+          <button class="cfg-bd-arrow" id="cfgBdToggle" type="button" aria-label="Preisdetails anzeigen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg></button>
         </div>
       </div>
       <div class="cfg-bar-actions">
