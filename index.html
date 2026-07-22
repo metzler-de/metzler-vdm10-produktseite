@@ -879,8 +879,7 @@
     .revcards-track { display:flex; gap:1rem; }
     .revcard { flex:0 0 calc((100% - 3rem)/4); scroll-snap-align:start; box-sizing:border-box; background:#fff; border:1px solid var(--g-200); border-radius:var(--radius-lg); overflow:hidden; cursor:pointer; text-align:left; padding:0; display:flex; flex-direction:column; transition:box-shadow .2s ease, border-color .2s ease; }
     @media(hover:hover){
-      .revcard:hover { border-color:var(--teal); box-shadow:inset 0 0 0 2px var(--teal); }
-      .revcard:hover .revcard-img img { transform:scale(1.03); }
+      .revcard:hover { border-color:rgba(1,82,83,.3); box-shadow:0 4px 12px rgba(0,0,0,.08); }
     }
     .revcard-img { width:100%; aspect-ratio:1/1; background:var(--g-100); overflow:hidden; }
     .revcard-img img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .35s ease; }
@@ -1842,8 +1841,7 @@
     .similar-track::-webkit-scrollbar { display:none; }
     .pcard { flex:0 0 calc((100% - 5*0.9rem)/6); min-width:11.5rem; scroll-snap-align:start; display:flex; flex-direction:column; gap:0.6rem; padding:0.85rem; border:1px solid var(--g-200); border-radius:var(--radius-lg); background:#fff; text-decoration:none; transition:box-shadow .2s ease,border-color .2s ease; }
     @media(hover:hover){
-      .pcard:hover { border-color:var(--teal); box-shadow:inset 0 0 0 2px var(--teal); }
-      .pcard:hover .pcard-media img { transform:scale(1.03); }
+      .pcard:hover { border-color:rgba(1,82,83,.3); box-shadow:0 4px 12px rgba(0,0,0,.08); }
     }
     .pcard-media { width:100%; aspect-ratio:1/1; border-radius:var(--radius); overflow:hidden; background:var(--paper); }
     .pcard-media img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .35s ease; }
