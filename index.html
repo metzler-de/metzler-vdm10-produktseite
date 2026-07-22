@@ -1565,17 +1565,17 @@
 
     /* editorial split (Über-uns style) — image one side, copy other, parallax + reveal */
     /* editorial split — reference "craft-chapter" animation (clip-path wipe + slow img zoom, staggered copy), 700×700 media, no shadow */
-    .bx-split { display:grid; grid-template-columns:min(700px,82vh) minmax(0,1fr); align-items:center; gap:clamp(3rem,6vw,6rem); padding:clamp(3.5rem,7vw,6rem) 0; }
+    .bx-split { display:grid; grid-template-columns:auto minmax(0,1fr); align-items:center; gap:clamp(3rem,6vw,6rem); padding:clamp(3.5rem,7vw,6rem) 0; }
     .bx-split.rev { direction:rtl; } .bx-split.rev > * { direction:ltr; }
-    .bx-split-media { position:relative; width:min(700px,100%,82vh); aspect-ratio:1/1; justify-self:start; margin-inline:0; border-radius:8px; overflow:hidden;
+    .bx-split-media { position:relative; width:auto; height:80vh; aspect-ratio:1/1; justify-self:start; margin-inline:0; border-radius:8px; overflow:hidden;
       clip-path:inset(6% round 8px); -webkit-clip-path:inset(6% round 8px);
       transition:clip-path 1100ms cubic-bezier(.2,.7,.2,1); will-change:clip-path; }
     .bx-split-media img { width:100%; height:100%; object-fit:cover; transform:scale(1.06);
       transition:transform 1200ms cubic-bezier(.2,.7,.2,1); will-change:transform; }
     .bx-split.is-visible .bx-split-media { clip-path:inset(0 round 8px); -webkit-clip-path:inset(0 round 8px); }
     .bx-split.is-visible .bx-split-media img { transform:scale(1); }
-    .bx-split-media.is-sm { width:min(560px,80%,66vh); }   /* 20 % smaller product shot */
-    .bx-split > div:not([class]) { max-width:60%; }   /* copy column narrower, pulled toward the image */
+    .bx-split-media.is-sm { height:64vh; }   /* 20 % smaller product shot */
+    .bx-split > div:not([class]) { max-width:none; }   /* copy takes the full width beside the image */
     @media(max-width:900px){
       .bx-split{ grid-template-columns:1fr; gap:0; }
       .bx-split.rev{ direction:ltr; }
@@ -1585,7 +1585,8 @@
       .bx-split > div:not([class]) > .bx-eyebrow{ order:1; }
       .bx-split > div:not([class]) > .bx-h{ order:2; }
       .bx-split-media, .bx-split .bx-video{ order:3; margin:1.25rem auto; }
-      .bx-split-media{ justify-self:center; }
+      .bx-split-media{ justify-self:center; width:100%; height:auto; }
+      .bx-split-media.is-sm{ height:auto; }
       /* uniform detail text (lead + list same size / colour) */
       .bx-split .bx-lead, .bx-split .bx-list li{ font-size:1rem; line-height:1.6; color:var(--g-700); }
     }
