@@ -5186,7 +5186,6 @@
       }
       if(st.mode==='gravur'){
         html+='<div class="cfg-field"><div class="field-wrapper"><input type="text" id="cfgGravur" class="form-control" maxlength="24" placeholder=" " value="'+S.gravurText.replace(/"/g,'&quot;')+'"><label for="cfgGravur">Namensschild · z. B. Ihr Name</label></div></div>';
-        html+='<div class="cfg-field cfg-field-2"><div class="field-wrapper"><input type="text" id="cfgGravStreet" class="form-control" maxlength="28" placeholder=" " value="'+S.gravStreet.replace(/"/g,'&quot;')+'"><label for="cfgGravStreet">Straße (optional)</label></div><div class="field-wrapper"><input type="text" id="cfgGravNr" class="form-control" maxlength="10" placeholder=" " value="'+S.gravNr.replace(/"/g,'&quot;')+'"><label for="cfgGravNr">Hausnummer (optional)</label></div></div>';
         html+='<p class="cfg-lab">Schriftart</p><div class="font-grid" id="cfgFonts">';
         FONTS.forEach(function(f){
           var sel=f.id===S.font;
