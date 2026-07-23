@@ -906,7 +906,7 @@
     /* Alle Bewertungen — list + sticky sidebar */
     .rev-two-col { display:grid; grid-template-columns:minmax(0,1fr) 20rem; gap:2rem; align-items:start; }
     @media(max-width:900px){ .rev-two-col { grid-template-columns:1fr; } }
-    .rev-side { position:sticky; top:130px; }
+    .rev-side { position:sticky; top:160px; }
     @media(max-width:900px){ .rev-side { position:static; order:-1; } }
     .rev-side-card { background:#fff; border:1px solid var(--g-200); border-radius:var(--radius-lg); padding:1.5rem; }
     .rev-side-title { font-size:1.25rem; font-weight:700; color:var(--g-900); margin-bottom:1rem; }
@@ -1579,13 +1579,13 @@
     .reveal[data-delay="3"]{ transition-delay:.3s; } .reveal[data-delay="4"]{ transition-delay:.4s; }
     @media(prefers-reduced-motion:reduce){ .reveal{ opacity:1 !important; transform:none !important; } }
 
-    .bx-eyebrow { font-size:0.75rem; font-weight:700; line-height:1.4; letter-spacing:0.15em; text-transform:uppercase; color:var(--teal); margin:0 0 0.9rem; }
+    .bx-eyebrow { font-size:0.75rem; font-weight:700; line-height:1.4; letter-spacing:0.15em; text-transform:uppercase; color:var(--g-500); margin:0 0 0.9rem; }
     .bx-h { font-size:clamp(1.75rem,4.2vw,3rem); font-weight:800; line-height:1.12; letter-spacing:-0.02em; color:var(--g-900); margin:0 0 1rem; }
     @media(max-width:768px){ .bx-h { font-size:1.75rem; } }
     .bx-lead { font-size:1.0625rem; line-height:1.7; color:var(--g-700); margin:0 0 1rem; }
     .bx-list { list-style:none; margin:1.25rem 0 0; padding:0; display:flex; flex-direction:column; gap:0.7rem; }
-    .bx-list li { display:flex; align-items:flex-start; gap:0.65rem; font-size:1rem; line-height:1.5; color:var(--g-800); }
-    .bx-list li svg { flex:0 0 auto; width:1.25rem; height:1.25rem; color:var(--teal); margin-top:0.1rem; }
+    .bx-list li { display:flex; align-items:flex-start; gap:0.8rem; font-size:1rem; line-height:1.5; color:var(--g-800); }
+    .bx-list li svg { flex:0 0 auto; box-sizing:border-box; width:1.65rem; height:1.65rem; padding:0.35rem; border-radius:50%; background:var(--teal-50); color:var(--teal); margin-top:0.05rem; }
 
     /* editorial split (Über-uns style) — image one side, copy other, parallax + reveal */
     /* editorial split — reference "craft-chapter" animation (clip-path wipe + slow img zoom, staggered copy), 700×700 media, no shadow */
@@ -1639,7 +1639,7 @@
       background:#fff; border:1px solid var(--g-200);
       box-shadow:0 20px 44px -26px rgba(1,41,42,.22); }
     .mk-media img { position:relative; z-index:1; width:auto; max-width:100%; max-height:clamp(360px,52vh,520px); object-fit:contain; }
-    .mk-eyebrow { display:inline-flex; align-items:center; gap:0.5rem; font-size:0.75rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--teal); margin:0 0 0.9rem; }
+    .mk-eyebrow { display:inline-flex; align-items:center; gap:0.5rem; font-size:0.75rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--g-500); margin:0 0 0.9rem; }
     .mk-eyebrow svg { width:1.05rem; height:1.05rem; }
     .mk-h { font-size:clamp(1.75rem,4.2vw,3rem); font-weight:700; letter-spacing:-0.02em; line-height:1.12; color:var(--black); margin:0 0 1.1rem; }
     .mk-lead { font-size:1.0625rem; line-height:1.65; color:var(--g-700); margin:0 0 1.75rem; max-width:40rem; }
@@ -1742,6 +1742,14 @@
     /* chips (SIP section) */
     .bx-chips { display:flex; flex-wrap:wrap; gap:0.5rem; margin:1.25rem 0; }
     .bx-chip { font-size:0.75rem; font-weight:700; letter-spacing:0.04em; color:var(--teal-700); background:var(--teal-50); border:1px solid var(--teal-100); border-radius:var(--radius-pill); padding:0.35rem 0.85rem; }
+    /* LED push-button colour swatches — mimic the real illuminated button */
+    .led-btns { display:flex; flex-wrap:wrap; gap:1.4rem; margin:1.1rem 0 0; }
+    .led-btn { display:flex; flex-direction:column; align-items:center; gap:0.55rem; }
+    .led-btn-face { position:relative; width:64px; height:64px; border-radius:50%; background:radial-gradient(circle at 50% 38%, #3a3a3e 0%, #202024 62%, #121214 100%); box-shadow:0 5px 14px -4px rgba(0,0,0,.45), inset 0 1px 1px rgba(255,255,255,.08); }
+    .led-btn-ring { position:absolute; inset:8px; border-radius:50%; border:3px solid var(--led); box-shadow:0 0 9px 1px var(--led), 0 0 3px 0 var(--led), inset 0 0 7px 0 var(--led); }
+    .led-btn-core { position:absolute; inset:17px; border-radius:50%; background:conic-gradient(from 0deg, #f2f2f4, #8d8d92, #e8e8ea, #86868b, #f2f2f4, #8d8d92, #e8e8ea, #86868b, #f2f2f4); box-shadow:inset 0 0 4px rgba(0,0,0,.35); }
+    .led-btn-core::after { content:""; position:absolute; inset:38%; border-radius:50%; background:radial-gradient(circle at 50% 40%, #fafafa, #b6b6ba); }
+    .led-btn-label { font-size:0.8125rem; font-weight:600; color:var(--g-800); }
 
     /* full-bleed dark camera panel with sticky visual */
     .bx-cam { position:relative; background:#000; color:#fff; width:100vw; margin-left:calc(50% - 50vw); }
@@ -1912,8 +1920,8 @@
     @media(max-width:520px){ .datasheet-row { grid-template-columns:1fr; gap:0.15rem; } }
     .tech-note { font-size:0.9375rem; line-height:1.6; color:var(--g-700); margin:0 0 1.1rem; }
     .tech-varlist { list-style:none; margin:0 0 1.25rem; padding:0; display:flex; flex-direction:column; gap:0.55rem; }
-    .tech-varlist li { display:flex; align-items:flex-start; gap:0.6rem; font-size:0.9375rem; color:var(--g-800); }
-    .tech-varlist li svg { flex-shrink:0; width:1.15rem; height:1.15rem; color:var(--teal); margin-top:0.1rem; }
+    .tech-varlist li { display:flex; align-items:flex-start; gap:0.7rem; font-size:0.9375rem; color:var(--g-800); }
+    .tech-varlist li svg { flex-shrink:0; box-sizing:border-box; width:1.5rem; height:1.5rem; padding:0.32rem; border-radius:50%; background:var(--teal-50); color:var(--teal); margin-top:0.02rem; }
     .tech-dl-link { display:inline-flex; align-items:center; gap:0.5rem; font-size:0.9375rem; font-weight:700; color:var(--teal); text-decoration:none; }
     .tech-dl-link:hover { text-decoration:underline; }
     .tech-dl-link svg { width:1.15rem; height:1.15rem; }
@@ -2680,12 +2688,12 @@
                   <h2 class="bx-h">Drucktaster mit einstellbarer LED-Farbe</h2>
                   <p class="bx-lead">Damit die Beleuchtung Ihrer Video-Türsprechanlage ideal zu Ihnen und Ihrem Eingangsbereich passt, lässt sich die LED-Farbe jederzeit einstellen.</p>
                   <p class="bx-eyebrow" style="margin-top:1.25rem;">Folgende Farben sind einstellbar</p>
-                  <div class="bx-chips">
-                    <span class="bx-chip" style="background:#fff;color:var(--g-700);border-color:var(--g-300)">Weiß</span>
-                    <span class="bx-chip" style="background:rgba(1,82,83,.1);color:var(--teal)">Grün</span>
-                    <span class="bx-chip" style="background:rgba(43,123,196,.12);color:#2C7BC4;border-color:#BcD">Blau</span>
-                    <span class="bx-chip" style="background:rgba(212,41,36,.1);color:var(--red);border-color:rgba(212,41,36,.25)">Rot</span>
-                    <span class="bx-chip" style="background:rgba(245,166,35,.14);color:#B4790E;border-color:rgba(245,166,35,.3)">Gelb</span>
+                  <div class="led-btns">
+                    <span class="led-btn"><span class="led-btn-face" style="--led:#F4F4F6"><span class="led-btn-ring"></span><span class="led-btn-core"></span></span><span class="led-btn-label">Weiß</span></span>
+                    <span class="led-btn"><span class="led-btn-face" style="--led:#35D07F"><span class="led-btn-ring"></span><span class="led-btn-core"></span></span><span class="led-btn-label">Grün</span></span>
+                    <span class="led-btn"><span class="led-btn-face" style="--led:#4C8DFF"><span class="led-btn-ring"></span><span class="led-btn-core"></span></span><span class="led-btn-label">Blau</span></span>
+                    <span class="led-btn"><span class="led-btn-face" style="--led:#FF3B30"><span class="led-btn-ring"></span><span class="led-btn-core"></span></span><span class="led-btn-label">Rot</span></span>
+                    <span class="led-btn"><span class="led-btn-face" style="--led:#FFC61A"><span class="led-btn-ring"></span><span class="led-btn-core"></span></span><span class="led-btn-label">Gelb</span></span>
                   </div>
                 </div>
               </div>
@@ -2804,7 +2812,7 @@
         <div class="mk">
           <div class="mk-media reveal" data-delay="1"><img src="pictures/beschreibung/q-montagekasten2.png" alt="VDM10 Universal-Montagekasten für Auf- und Unterputz"></div>
           <div class="mk-body">
-            <p class="mk-eyebrow reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.2 5.2L3 18l3 3 6.5-6.5a4 4 0 0 0 5.2-5.2l-2.5 2.5-2.1-.5-.5-2.1 2.6-2.4z"/></svg> Montage &amp; Fassade</p>
+            <p class="mk-eyebrow reveal">Montage &amp; Fassade</p>
             <h2 class="mk-h reveal" data-delay="1">Universal Montagekasten für Aufputz &amp; Unterputz</h2>
             <p class="mk-lead reveal" data-delay="2">Durch den rostfreien Edelstahl-Montagekasten und das mitgelieferte Montagematerial ist die VDM10 sowohl auf- als auch unterputz montierbar. Mit integrierter Dichtung ideal für WDVS-Fassaden.</p>
             <ul class="mk-list reveal" data-delay="3">
