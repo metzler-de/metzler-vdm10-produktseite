@@ -468,6 +468,7 @@
     .cart-added-ico svg { width:100%; height:100%; }
     .cart-added-txt { font-size:0.9375rem; font-weight:600; color:var(--g-900); line-height:1.35; }
     /* product card */
+    .cart-item + .cart-item { margin-top:1rem; padding-top:1rem; border-top:1px solid var(--g-200); }
     .cart-item-card { display:flex; gap:1rem; align-items:flex-start; padding:0; border:none; border-radius:0; background:none; }
     .cart-item-img { width:68px; height:68px; flex-shrink:0; border:1px solid var(--g-200); border-radius:var(--radius); overflow:hidden; background:#fff; padding:5px; }
     .cart-item-img img { width:100%; height:100%; object-fit:contain; }
@@ -3853,19 +3854,7 @@
         <span class="cart-added-txt">Zum Warenkorb hinzugefügt</span>
       </div>
 
-      <div class="cart-item-card">
-        <span class="cart-item-img"><img id="cartDrawerImg" src="" alt=""></span>
-        <div class="cart-item-main">
-          <span class="cart-item-txt" id="cartDrawerName"></span>
-          <span class="cart-item-qty">Menge: 1</span>
-        </div>
-        <button type="button" class="cart-item-edit" id="cartDrawerEdit" aria-label="Konfiguration bearbeiten"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="M15 5l4 4"/></svg></button>
-      </div>
-
-      <a href="#" class="cart-view-config" id="cartDrawerViewConfig" aria-expanded="false">Konfiguration ansehen <svg class="cvc-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
-      <div class="cart-config" id="cartDrawerConfig" hidden></div>
-
-      <div class="cart-item-price"><span>Preis wie konfiguriert</span><b id="cartDrawerConfigured">699,00 €</b></div>
+      <div id="cartItemsList"></div>
     </div>
 
     <div class="cart-drawer-footer">
@@ -5346,7 +5335,7 @@
       });
       elScroll.querySelectorAll('[data-qplus]').forEach(function(b){ b.onclick=function(e){ e.stopPropagation(); var id=b.getAttribute('data-qplus'); S.innenQty[id]=Math.min(20,(S.innenQty[id]||1)+1); render(); }; });
       elScroll.querySelectorAll('[data-qminus]').forEach(function(b){ b.onclick=function(e){ e.stopPropagation(); var id=b.getAttribute('data-qminus'); S.innenQty[id]=Math.max(1,(S.innenQty[id]||1)-1); render(); }; });
-      elScroll.querySelectorAll('.cfg-next').forEach(function(b){ b.onclick=function(){ var n=+b.getAttribute('data-next'); if(n<0){ requireGate(function(){ closeAllSteps(); var s=document.getElementById('cfgSummary'); if(s) requestAnimationFrame(function(){ s.scrollIntoView({behavior:'smooth', block:'end'}); }); }); } else openStep(n); }; });
+      elScroll.querySelectorAll('.cfg-next').forEach(function(b){ b.onclick=function(){ var n=+b.getAttribute('data-next'); if(n<0){ requireGate(function(){ closeAllSteps(); var s=document.getElementById('cfgSummary'); if(s) setTimeout(function(){ var y=s.getBoundingClientRect().top+window.scrollY-130; window.scrollTo({top:Math.max(0,y), behavior:'smooth'}); }, 380); }); } else openStep(n); }; });
     }
 
     function enable3D(on){
@@ -5619,55 +5608,68 @@
       var overlay=document.getElementById('cartDrawerOverlay'), drawer=document.getElementById('cartDrawer');
       if(!overlay || !drawer) return;
       var closeBtn=document.getElementById('cartDrawerClose');
-      function openCartDrawer(){
+      window.__cartItems = window.__cartItems || [];
+      var esc=function(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');};
+      var PENCIL='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="M15 5l4 4"/></svg>';
+      var CARET='<svg class="cvc-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>';
+      function currentSnapshot(){
         var c=COLORS[S.color];
         var cn=(window.__wunschRAL && /Wunschfarbe/i.test(c.name)) ? ('Wunschfarbe · '+window.__wunschRAL.ral) : c.name.replace(/\s*\(.*\)$/,'');
-        var img=document.getElementById('cartDrawerImg');
-        if(img){ img.src=P+c.img; img.alt=cn; }
-        var nameEl=document.getElementById('cartDrawerName');
-        if(nameEl) nameEl.textContent='Metzler VDM10 2.0 Video-Türsprechanlage | 1 Klingeltaster | '+cn+' | Colson';
-        var sum=total(), vat=sum-sum/1.19;
-        var cfgEl=document.getElementById('cartDrawerConfigured'); if(cfgEl) cfgEl.textContent=eur(sum);
-        var totEl=document.getElementById('cartDrawerTotal'); if(totEl) totEl.textContent=eur(sum);
-        var vatEl=document.getElementById('cartDrawerVat'); if(vatEl) vatEl.textContent=eur(vat)+' USt.';
-        // reset the (collapsed) configuration details panel
-        var cfgPanel=document.getElementById('cartDrawerConfig'); if(cfgPanel){ cfgPanel.hidden=true; cfgPanel.innerHTML=''; }
-        var vc=document.getElementById('cartDrawerViewConfig'); if(vc) vc.setAttribute('aria-expanded','false');
-        overlay.classList.add('open'); drawer.classList.add('open'); document.body.style.overflow='hidden';
-      }
-      function cartConfigHTML(){
-        var c=COLORS[S.color];
-        var cn=(window.__wunschRAL && /Wunschfarbe/i.test(c.name)) ? ('Wunschfarbe · '+window.__wunschRAL.ral) : c.name.replace(/\s*\(.*\)$/,'');
-        var esc=function(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');};
         var rows=[['Farbe', cn]];
-        // only colour + gravur data (Namensschild, Schriftart) — shown only when added
         var gtext=(S.gravurText||'').trim();
         if(!gtext){ var gi=document.getElementById('cfgGravur'); if(gi && gi.value.trim()) gtext=gi.value.trim(); }
         if(gtext) rows.push(['Namensschild', gtext]);
         if(S.font){ var f=FONTS.find(function(x){return x.id===S.font;}); rows.push(['Schriftart', f?(f.pb?'Schriftart 96':'Schriftart '+f.id):S.font]); }
-        return rows.map(function(r){ return '<div class="cart-config-row"><span>'+esc(r[0])+'</span><span>'+esc(r[1])+'</span></div>'; }).join('');
+        var configRows=rows.map(function(r){ return '<div class="cart-config-row"><span>'+esc(r[0])+'</span><span>'+esc(r[1])+'</span></div>'; }).join('');
+        return { name:'Metzler VDM10 2.0 Video-Türsprechanlage | 1 Klingeltaster | '+cn+' | Colson', img:P+c.img, sum:total(), configRows:configRows };
+      }
+      function itemHTML(it, idx){
+        return '<div class="cart-item">'
+          +'<div class="cart-item-card">'
+          +'<span class="cart-item-img"><img src="'+it.img+'" alt=""></span>'
+          +'<div class="cart-item-main"><span class="cart-item-txt">'+esc(it.name)+'</span><span class="cart-item-qty">Menge: 1</span></div>'
+          +'<button type="button" class="cart-item-edit" data-edit aria-label="Konfiguration bearbeiten">'+PENCIL+'</button>'
+          +'</div>'
+          +'<a href="#" class="cart-view-config" data-viewcfg="'+idx+'" aria-expanded="false">Konfiguration ansehen '+CARET+'</a>'
+          +'<div class="cart-config" data-cfg="'+idx+'" hidden>'+it.configRows+'</div>'
+          +'<div class="cart-item-price"><span>Preis wie konfiguriert</span><b>'+eur(it.sum)+'</b></div>'
+          +'</div>';
+      }
+      function renderCart(){
+        var list=document.getElementById('cartItemsList');
+        if(list) list.innerHTML=window.__cartItems.map(function(it,i){ return itemHTML(it,i); }).join('');
+        var sum=window.__cartItems.reduce(function(a,it){ return a+it.sum; }, 0), vat=sum-sum/1.19;
+        var totEl=document.getElementById('cartDrawerTotal'); if(totEl) totEl.textContent=eur(sum);
+        var vatEl=document.getElementById('cartDrawerVat'); if(vatEl) vatEl.textContent=eur(vat)+' USt.';
+        window.__cartCount=window.__cartItems.length; if(window.__setCartBadge) window.__setCartBadge();
+      }
+      window.__renderCart=renderCart;
+      function openCartDrawer(opts){
+        if(opts && opts.add){ window.__cartItems.unshift(currentSnapshot()); }
+        renderCart();
+        overlay.classList.add('open'); drawer.classList.add('open'); document.body.style.overflow='hidden';
       }
       function closeCartDrawer(){ overlay.classList.remove('open'); drawer.classList.remove('open'); document.body.style.overflow=''; }
       if(closeBtn) closeBtn.addEventListener('click', closeCartDrawer);
       overlay.addEventListener('click', closeCartDrawer);
       document.addEventListener('keydown', function(e){ if(e.key==='Escape' && drawer.classList.contains('open')) closeCartDrawer(); });
-      var viewConfig=document.getElementById('cartDrawerViewConfig'), editBtn=document.getElementById('cartDrawerEdit');
-      var cfgPanel=document.getElementById('cartDrawerConfig');
-      if(viewConfig) viewConfig.addEventListener('click', function(e){ e.preventDefault();
-        var show=cfgPanel.hidden;
-        if(show){ cfgPanel.innerHTML=cartConfigHTML(); cfgPanel.hidden=false; } else { cfgPanel.hidden=true; }
-        viewConfig.setAttribute('aria-expanded', show?'true':'false');
+      var itemsList=document.getElementById('cartItemsList');
+      if(itemsList) itemsList.addEventListener('click', function(e){
+        var vc=e.target.closest('[data-viewcfg]');
+        if(vc){ e.preventDefault(); var panel=itemsList.querySelector('.cart-config[data-cfg="'+vc.getAttribute('data-viewcfg')+'"]');
+          if(panel){ var show=panel.hidden; panel.hidden=!show; vc.setAttribute('aria-expanded', show?'true':'false'); } return; }
+        var ed=e.target.closest('[data-edit]');
+        if(ed){ e.preventDefault(); closeCartDrawer(); var el2=document.getElementById('cfgInline'); if(el2) el2.scrollIntoView({behavior:'smooth', block:'start'}); }
       });
-      if(editBtn) editBtn.addEventListener('click', function(e){ e.preventDefault(); closeCartDrawer(); var el2=document.getElementById('cfgInline'); if(el2) el2.scrollIntoView({behavior:'smooth', block:'start'}); });
       var toCartBtn=document.getElementById('cartDrawerToCart'), checkoutBtn=document.getElementById('cartDrawerCheckout');
       if(toCartBtn) toCartBtn.addEventListener('click', closeCartDrawer);
       if(checkoutBtn) checkoutBtn.addEventListener('click', closeCartDrawer);
       window.__openCartDrawer=openCartDrawer;
       // header cart badge + icon → reopen the drawer to view the added product
       window.__setCartBadge=function(){ document.querySelectorAll('.hdr-cart-badge').forEach(function(b){ b.textContent=window.__cartCount||0; b.hidden=!(window.__cartCount>0); }); };
-      document.querySelectorAll('[aria-label="Warenkorb"]').forEach(function(ic){ ic.addEventListener('click', function(e){ e.preventDefault(); if((window.__cartCount||0)>0) openCartDrawer(); }); });
+      document.querySelectorAll('[aria-label="Warenkorb"]').forEach(function(ic){ ic.addEventListener('click', function(e){ e.preventDefault(); if((window.__cartItems||[]).length>0) openCartDrawer(); }); });
     })();
-    document.getElementById('cfgToCart').onclick=function(){ requireGate(function(){ window.__cartCount=(window.__cartCount||0)+1; if(window.__setCartBadge) window.__setCartBadge(); if(window.__openCartDrawer) window.__openCartDrawer(); }); };
+    document.getElementById('cfgToCart').onclick=function(){ requireGate(function(){ if(window.__openCartDrawer) window.__openCartDrawer({add:true}); }); };
   })();
 
   /* ══════════ BESCHREIBUNG · scroll animations (reveal · parallax · sticky camera · slider) ══════════ */
