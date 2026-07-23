@@ -640,6 +640,8 @@
     body[data-active-tab="downloads"] section[data-panel="downloads"],
     body[data-active-tab="technische-details"] section[data-panel="technische-details"],
     body[data-active-tab="produktmerkmale"] section[data-panel="produktmerkmale"] { display:block; }
+    /* the bx-dividers belong to the Beschreibung flow — hide them on other tabs so they don't stack into a thick gray band under the tab bar */
+    body[data-active-tab]:not([data-active-tab="beschreibung"]) main > .bx-divider { display:none; }
 
     /* ══════════ Generic section ══════════ */
     .section { padding:4.5rem 0; }
@@ -1120,6 +1122,12 @@
     .footer-legal { padding:1.25rem 0; display:flex; flex-wrap:wrap; gap:0.5rem 1.25rem; justify-content:center; border-bottom:1px solid rgba(255,255,255,.1); }
     .footer-legal span { font-size:0.875rem; color:rgba(255,255,255,.5); cursor:pointer; white-space:nowrap; transition:color .15s; }
     .footer-legal span:hover { color:rgba(255,255,255,.9); }
+    .footer-more { display:inline-flex; align-items:center; gap:0.4rem; margin-top:0.75rem; font-size:0.875rem; font-weight:600; color:var(--mint); text-decoration:none; transition:gap .15s; }
+    .footer-more svg { width:1rem; height:1rem; transition:transform .15s; }
+    .footer-more:hover svg { transform:translateX(3px); }
+    .footer-widerruf-row { display:flex; justify-content:center; padding:1.25rem 0 0; }
+    .footer-widerruf { display:inline-flex; align-items:center; justify-content:center; padding:0.6rem 1.4rem; border-radius:var(--radius); background:var(--mint); color:var(--teal-900); font-size:0.875rem; font-weight:700; text-decoration:none; transition:background .15s, transform .15s; }
+    .footer-widerruf:hover { background:#7fe8e1; transform:translateY(-1px); }
     .footer-copy { padding:1rem 0 1.5rem; text-align:center; font-size:0.875rem; color:#fff; }
     .footer-copy a { color:rgba(255,255,255,.5); text-decoration:underline; }
 
@@ -3132,6 +3140,7 @@
           <img class="footer-logo" src="pictures/footer/Metzler_Logo_footer.svg" alt="Metzler" />
           <p class="small">Edelstahl-Tuerklingel.de ist ein Unternehmen der <a href="https://metzlergmbh.de" target="_blank" rel="noopener">Metzler Gruppe</a></p>
           <p class="tag">Der Anbieter für Briefkästen, Sprechanlagen, Türklingeln und Hausnummern.</p>
+          <a class="footer-more" href="https://edelstahl-tuerklingel.de/ueber-uns" target="_blank" rel="noopener">Mehr erfahren <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
         </div>
         <div>
           <h4>Kontakt</h4>
@@ -3223,6 +3232,10 @@
         <span>Geprüfte Kundenbewertungen</span><span>Metzler Garantieerklärung</span><span>Datenschutz</span>
         <span>AGB</span><span>Sitemap</span><span>Impressum</span><span>Batterieentsorgungsgesetz</span>
         <span>Widerrufsrecht</span><span>Hinweise zur Elektroaltgeräteentsorgung</span><span>Cookie-Einstellungen</span>
+      </div>
+
+      <div class="footer-widerruf-row">
+        <a class="footer-widerruf" href="https://edelstahl-tuerklingel.de/online-widerrufsformular" target="_blank" rel="noopener">Vertrag widerrufen</a>
       </div>
 
       <div class="footer-copy">
