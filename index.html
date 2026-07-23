@@ -1599,6 +1599,7 @@
     .bx-split.is-visible .bx-split-media img { transform:scale(1); }
     .bx-split-media.is-sm { height:min(560px, calc((100vh - 64px) * 0.64)); }   /* 20 % smaller product shot */
     .bx-split > div:not([class]) { max-width:none; }   /* copy takes the full width beside the image */
+    .bx-split .bx-lead, .bx-split .bx-list li { color:var(--black); }
     @media(max-width:900px){
       .bx-split{ grid-template-columns:1fr; gap:0; }
       .bx-split.rev{ direction:ltr; }
@@ -1611,7 +1612,7 @@
       .bx-split-media{ justify-self:center; width:100%; height:auto; }
       .bx-split-media.is-sm{ height:auto; }
       /* uniform detail text (lead + list same size / colour) */
-      .bx-split .bx-lead, .bx-split .bx-list li{ font-size:1rem; line-height:1.6; color:var(--g-700); }
+      .bx-split .bx-lead, .bx-split .bx-list li{ font-size:1rem; line-height:1.6; color:var(--black); }
     }
     @media(prefers-reduced-motion:reduce){ .bx-split-media{ clip-path:none !important; } .bx-split-media img{ transform:none !important; } }
 
@@ -1633,7 +1634,7 @@
     /* Montagekasten — modern editorial: image on a soft panel + icon-list */
     .mk-section { padding-block:clamp(4.5rem,9vw,7.5rem); }
     .mk { display:grid; grid-template-columns:minmax(0,460px) minmax(0,1fr); gap:clamp(2.5rem,6vw,5rem); align-items:center; }
-    .mk-media { position:relative; border-radius:1.5rem; padding:clamp(1.75rem,3.5vw,3rem); display:flex; align-items:center; justify-content:center; overflow:hidden;
+    .mk-media { position:relative; border-radius:8px; padding:clamp(1.75rem,3.5vw,3rem); display:flex; align-items:center; justify-content:center; overflow:hidden;
       background:#fff; border:1px solid var(--g-200);
       box-shadow:0 20px 44px -26px rgba(1,41,42,.22); }
     .mk-media img { position:relative; z-index:1; width:auto; max-width:100%; max-height:clamp(360px,52vh,520px); object-fit:contain; }
@@ -1766,7 +1767,7 @@
     .bx-cam-card .n { display:inline-block; font-size:1.125rem; font-weight:800; letter-spacing:0.1em; color:var(--mint,#7FB5B5); margin:0 0 1.1rem; opacity:.5; transform:translateX(-4px); transition:opacity .5s ease, transform .5s ease; }
     .bx-cam-card.active .n { opacity:1; transform:none; }
     .bx-cam-card h4 { font-size:clamp(1.75rem,4.2vw,3rem); font-weight:700; line-height:1.25; margin:0 0 1.1rem; color:#fff; }
-    .bx-cam-card p { font-size:1.3125rem; line-height:1.7; color:rgba(255,255,255,.75); margin:0; }
+    .bx-cam-card p { font-size:1.3125rem; line-height:1.7; color:#fff; margin:0; }
     @media(max-width:860px){
       /* simple stacked flow: header, then video, then all text — nothing sticky */
       .bx-cam-scroll { display:block; position:static; max-width:none; padding:1.5rem 18px clamp(3rem,7vw,5rem); }
@@ -1777,7 +1778,7 @@
       .bx-cam-card::after { content:none; }
       .bx-cam-card .n { text-shadow:none; }
       .bx-cam-card h4 { font-size:1.5rem; text-shadow:none; }
-      .bx-cam-card p { font-size:1.125rem; color:rgba(255,255,255,.75); text-shadow:none; }
+      .bx-cam-card p { font-size:1.125rem; color:#fff; text-shadow:none; }
     }
 
     /* point-grow slider (features) */
@@ -3023,32 +3024,6 @@
       </div>
     </section>
 
-    <!-- Ähnliche Artikel — scrollable product carousel -->
-    <section class="section similar" style="background:#fff;border-top:1px solid var(--g-200);">
-      <div class="wrap">
-        <div class="similar-head">
-          <h2 class="similar-title">Ähnliche Artikel</h2>
-          <div class="similar-nav">
-            <button class="similar-arrow" id="simPrev" type="button" aria-label="Zurück"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
-            <button class="similar-arrow" id="simNext" type="button" aria-label="Weiter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
-          </div>
-        </div>
-        <div class="similar-track" id="simTrack">
-          <a class="pcard" href="#"><span class="pcard-media"><img src="pictures/vdm10-00.jpg" alt="Metzler VDM10 2.0 · 1 Klingeltaster · Kian" loading="lazy"></span><span class="pcard-brand">Metzler</span><span class="pcard-title">Metzler VDM10 2.0 Video-Türsprechanlage | 1 Klingeltaster | Kian</span><span class="pcard-price"><span class="pcard-from">ab</span> <b>679,00 €</b></span></a>
-          <a class="pcard" href="#"><span class="pcard-media"><img src="pictures/vdm10-01.jpg" alt="Metzler VDM10 2.0 Mehrfamilien · 2 Klingeltaster · Kian" loading="lazy"></span><span class="pcard-brand">Metzler</span><span class="pcard-title">Metzler VDM10 2.0 Mehrfamilien Video-Türsprechanlage | 2 Klingeltaster | Kian</span><span class="pcard-price"><span class="pcard-from">ab</span> <b>739,00 €</b></span></a>
-          <a class="pcard" href="#"><span class="pcard-media"><img src="pictures/vdm10-02.jpg" alt="Metzler VDM10 2.0 Mehrfamilien · 3 Klingeltaster · Colson" loading="lazy"></span><span class="pcard-brand">Metzler</span><span class="pcard-title">Metzler VDM10 2.0 Mehrfamilien Video-Türsprechanlage | 3 Klingeltaster | Colson</span><span class="pcard-price"><span class="pcard-from">ab</span> <b>819,00 €</b></span></a>
-          <a class="pcard" href="#"><span class="pcard-media"><img src="pictures/vdm10-07.jpg" alt="Metzler VDM10 2.0 Mehrfamilien · 2 Klingeltaster · Colson" loading="lazy"></span><span class="pcard-brand">Metzler</span><span class="pcard-title">Metzler VDM10 2.0 Mehrfamilien Video-Türsprechanlage | 2 Klingeltaster | Colson</span><span class="pcard-price"><span class="pcard-from">ab</span> <b>759,00 €</b></span></a>
-          <a class="pcard" href="#"><span class="pcard-media"><img src="pictures/vdm10-08.jpg" alt="Metzler VDM10 2.0 modulare Video-Türsprechanlage · Horizon" loading="lazy"></span><span class="pcard-brand">Metzler</span><span class="pcard-title">Metzler VDM10 2.0 modulare Video-Türsprechanlage | Ein- und Mehrfamilien | Horizon</span><span class="pcard-price"><span class="pcard-from">ab</span> <b>999,00 €</b></span></a>
-          <a class="pcard" href="#"><span class="pcard-media"><img src="pictures/vdm10-11.jpg" alt="Metzler VDM10 2.0 mit Fingerprint · 1 Klingeltaster · Niko" loading="lazy"></span><span class="pcard-brand">Metzler</span><span class="pcard-title">Metzler VDM10 2.0 Video-Türsprechanlage | mit Fingerprint | 1 Klingeltaster | Niko</span><span class="pcard-price"><span class="pcard-from">ab</span> <b>849,00 €</b></span></a>
-          <a class="pcard" href="#"><span class="pcard-media"><img src="https://edelstahl-tuerklingel.de/media/image/product/45248/md/metzler-xdm10-video-tuersprechanlage-mit-austauschbarem-namensschild-2-draht-bus-1-klingeltaster-maxior~2.jpg" alt="Metzler XDM10 · 2-Draht-BUS · 1 Klingeltaster · Maxior" loading="lazy"></span><span class="pcard-brand">Metzler</span><span class="pcard-title">Metzler XDM10 Video-Türsprechanlage | mit Namensschild | 2-Draht-BUS | 1 Klingeltaster | Maxior</span><span class="pcard-price"><span class="pcard-from">ab</span> <b>899,00 €</b></span></a>
-          <a class="pcard" href="#"><span class="pcard-media"><img src="https://edelstahl-tuerklingel.de/media/image/product/40492/md/metzler-vdm10-20-video-tuersprechanlage-mit-fingerprint-2-klingeltaster-niko.jpg" alt="Metzler VDM10 2.0 mit Fingerprint · 2 Klingeltaster · Niko" loading="lazy"></span><span class="pcard-brand">Metzler</span><span class="pcard-title">Metzler VDM10 2.0 Video-Türsprechanlage | mit Fingerprint | 2 Klingeltaster | Niko</span><span class="pcard-price"><span class="pcard-from">ab</span> <b>999,00 €</b></span></a>
-          <a class="pcard" href="#"><span class="pcard-media"><img src="https://edelstahl-tuerklingel.de/media/image/product/45256/md/metzler-xdm10-video-tuersprechanlage-mit-austauschbarem-namensschild-2-draht-bus-2-klingeltaster-maxior~2.jpg" alt="Metzler XDM10 · 2-Draht-BUS · 2 Klingeltaster · Maxior" loading="lazy"></span><span class="pcard-brand">Metzler</span><span class="pcard-title">Metzler XDM10 Video-Türsprechanlage | mit Namensschild | 2-Draht-BUS | 2 Klingeltaster | Maxior</span><span class="pcard-price"><span class="pcard-from">ab</span> <b>949,00 €</b></span></a>
-          <a class="pcard" href="#"><span class="pcard-media"><img src="https://edelstahl-tuerklingel.de/media/image/product/31321/md/metzler-vdm10-20-mehrfamilien-video-tuersprechanlage-3-klingeltaster-kian.jpg" alt="Metzler VDM10 2.0 Mehrfamilien · 3 Klingeltaster · Kian" loading="lazy"></span><span class="pcard-brand">Metzler</span><span class="pcard-title">Metzler VDM10 2.0 Mehrfamilien Video-Türsprechanlage | 3 Klingeltaster | Kian</span><span class="pcard-price"><span class="pcard-from">ab</span> <b>799,00 €</b></span></a>
-          <a class="pcard" href="#"><span class="pcard-media"><img src="https://edelstahl-tuerklingel.de/media/image/product/44643/md/metzler-video-tuersprechsaeule-klingelstele-mit-gesichtserkennung-farbe-waehlbar-ein-mehrfamilienhaus-personalisierbar-sdm10s.jpg" alt="Metzler Video-Türsprechsäule Klingelstele · SDM10S" loading="lazy"></span><span class="pcard-brand">Metzler</span><span class="pcard-title">Metzler Video-Türsprechsäule | Klingelstele mit Gesichtserkennung | SDM10S</span><span class="pcard-price"><span class="pcard-from">ab</span> <b>2.599,00 €</b></span></a>
-        </div>
-      </div>
-    </section>
-
     <!-- FAQ -->
     <section class="section" style="background:var(--paper);border-top:1px solid var(--g-200);">
       <div class="wrap-narrow">
@@ -3088,6 +3063,32 @@
               </details>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ähnliche Artikel — scrollable product carousel -->
+    <section class="section similar" style="background:#fff;border-top:1px solid var(--g-200);">
+      <div class="wrap">
+        <div class="similar-head">
+          <h2 class="similar-title">Ähnliche Artikel</h2>
+          <div class="similar-nav">
+            <button class="similar-arrow" id="simPrev" type="button" aria-label="Zurück"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+            <button class="similar-arrow" id="simNext" type="button" aria-label="Weiter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+          </div>
+        </div>
+        <div class="similar-track" id="simTrack">
+          <a class="pcard" href="#"><span class="pcard-media"><img src="pictures/vdm10-00.jpg" alt="Metzler VDM10 2.0 · 1 Klingeltaster · Kian" loading="lazy"></span><span class="pcard-brand">Metzler</span><span class="pcard-title">Metzler VDM10 2.0 Video-Türsprechanlage | 1 Klingeltaster | Kian</span><span class="pcard-price"><span class="pcard-from">ab</span> <b>679,00 €</b></span></a>
+          <a class="pcard" href="#"><span class="pcard-media"><img src="pictures/vdm10-01.jpg" alt="Metzler VDM10 2.0 Mehrfamilien · 2 Klingeltaster · Kian" loading="lazy"></span><span class="pcard-brand">Metzler</span><span class="pcard-title">Metzler VDM10 2.0 Mehrfamilien Video-Türsprechanlage | 2 Klingeltaster | Kian</span><span class="pcard-price"><span class="pcard-from">ab</span> <b>739,00 €</b></span></a>
+          <a class="pcard" href="#"><span class="pcard-media"><img src="pictures/vdm10-02.jpg" alt="Metzler VDM10 2.0 Mehrfamilien · 3 Klingeltaster · Colson" loading="lazy"></span><span class="pcard-brand">Metzler</span><span class="pcard-title">Metzler VDM10 2.0 Mehrfamilien Video-Türsprechanlage | 3 Klingeltaster | Colson</span><span class="pcard-price"><span class="pcard-from">ab</span> <b>819,00 €</b></span></a>
+          <a class="pcard" href="#"><span class="pcard-media"><img src="pictures/vdm10-07.jpg" alt="Metzler VDM10 2.0 Mehrfamilien · 2 Klingeltaster · Colson" loading="lazy"></span><span class="pcard-brand">Metzler</span><span class="pcard-title">Metzler VDM10 2.0 Mehrfamilien Video-Türsprechanlage | 2 Klingeltaster | Colson</span><span class="pcard-price"><span class="pcard-from">ab</span> <b>759,00 €</b></span></a>
+          <a class="pcard" href="#"><span class="pcard-media"><img src="pictures/vdm10-08.jpg" alt="Metzler VDM10 2.0 modulare Video-Türsprechanlage · Horizon" loading="lazy"></span><span class="pcard-brand">Metzler</span><span class="pcard-title">Metzler VDM10 2.0 modulare Video-Türsprechanlage | Ein- und Mehrfamilien | Horizon</span><span class="pcard-price"><span class="pcard-from">ab</span> <b>999,00 €</b></span></a>
+          <a class="pcard" href="#"><span class="pcard-media"><img src="pictures/vdm10-11.jpg" alt="Metzler VDM10 2.0 mit Fingerprint · 1 Klingeltaster · Niko" loading="lazy"></span><span class="pcard-brand">Metzler</span><span class="pcard-title">Metzler VDM10 2.0 Video-Türsprechanlage | mit Fingerprint | 1 Klingeltaster | Niko</span><span class="pcard-price"><span class="pcard-from">ab</span> <b>849,00 €</b></span></a>
+          <a class="pcard" href="#"><span class="pcard-media"><img src="https://edelstahl-tuerklingel.de/media/image/product/45248/md/metzler-xdm10-video-tuersprechanlage-mit-austauschbarem-namensschild-2-draht-bus-1-klingeltaster-maxior~2.jpg" alt="Metzler XDM10 · 2-Draht-BUS · 1 Klingeltaster · Maxior" loading="lazy"></span><span class="pcard-brand">Metzler</span><span class="pcard-title">Metzler XDM10 Video-Türsprechanlage | mit Namensschild | 2-Draht-BUS | 1 Klingeltaster | Maxior</span><span class="pcard-price"><span class="pcard-from">ab</span> <b>899,00 €</b></span></a>
+          <a class="pcard" href="#"><span class="pcard-media"><img src="https://edelstahl-tuerklingel.de/media/image/product/40492/md/metzler-vdm10-20-video-tuersprechanlage-mit-fingerprint-2-klingeltaster-niko.jpg" alt="Metzler VDM10 2.0 mit Fingerprint · 2 Klingeltaster · Niko" loading="lazy"></span><span class="pcard-brand">Metzler</span><span class="pcard-title">Metzler VDM10 2.0 Video-Türsprechanlage | mit Fingerprint | 2 Klingeltaster | Niko</span><span class="pcard-price"><span class="pcard-from">ab</span> <b>999,00 €</b></span></a>
+          <a class="pcard" href="#"><span class="pcard-media"><img src="https://edelstahl-tuerklingel.de/media/image/product/45256/md/metzler-xdm10-video-tuersprechanlage-mit-austauschbarem-namensschild-2-draht-bus-2-klingeltaster-maxior~2.jpg" alt="Metzler XDM10 · 2-Draht-BUS · 2 Klingeltaster · Maxior" loading="lazy"></span><span class="pcard-brand">Metzler</span><span class="pcard-title">Metzler XDM10 Video-Türsprechanlage | mit Namensschild | 2-Draht-BUS | 2 Klingeltaster | Maxior</span><span class="pcard-price"><span class="pcard-from">ab</span> <b>949,00 €</b></span></a>
+          <a class="pcard" href="#"><span class="pcard-media"><img src="https://edelstahl-tuerklingel.de/media/image/product/31321/md/metzler-vdm10-20-mehrfamilien-video-tuersprechanlage-3-klingeltaster-kian.jpg" alt="Metzler VDM10 2.0 Mehrfamilien · 3 Klingeltaster · Kian" loading="lazy"></span><span class="pcard-brand">Metzler</span><span class="pcard-title">Metzler VDM10 2.0 Mehrfamilien Video-Türsprechanlage | 3 Klingeltaster | Kian</span><span class="pcard-price"><span class="pcard-from">ab</span> <b>799,00 €</b></span></a>
+          <a class="pcard" href="#"><span class="pcard-media"><img src="https://edelstahl-tuerklingel.de/media/image/product/44643/md/metzler-video-tuersprechsaeule-klingelstele-mit-gesichtserkennung-farbe-waehlbar-ein-mehrfamilienhaus-personalisierbar-sdm10s.jpg" alt="Metzler Video-Türsprechsäule Klingelstele · SDM10S" loading="lazy"></span><span class="pcard-brand">Metzler</span><span class="pcard-title">Metzler Video-Türsprechsäule | Klingelstele mit Gesichtserkennung | SDM10S</span><span class="pcard-price"><span class="pcard-from">ab</span> <b>2.599,00 €</b></span></a>
         </div>
       </div>
     </section>
