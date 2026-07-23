@@ -791,6 +791,8 @@
     .rbar .lab { width:64px; flex-shrink:0; }
     .rbar .track { flex:1; height:9px; background:var(--g-100); border-radius:var(--radius-pill); overflow:hidden; }
     .rbar .fill { display:block; height:100%; background:var(--teal); border-radius:var(--radius-pill); }
+    /* on the paper-gray reviews section the track needs more contrast */
+    .reviews-highlight .rbar .track { background:#fff; box-shadow:inset 0 0 0 1px var(--g-200); }
     .rev-all { display:inline-block; margin-top:1.5rem; color:var(--teal); font-weight:700; font-size:0.9375rem; border-bottom:1px solid rgba(1,82,83,.35); }
     .rev-all:hover { border-bottom-color:var(--teal); }
     .reviews-highlight { background:var(--paper); border-top:1px solid var(--g-200); }
@@ -2356,8 +2358,9 @@
               </div>
               <div class="price-meta">inkl. 19 % USt. · <a href="#" class="price-meta-link" data-ship-open>versandkostenfreie Lieferung</a></div>
               <div class="stock"><span class="dot"></span> Sofort verfügbar</div>
-              <div class="p-brand p-brand--under"><span class="p-brand-chip"><svg class="p-brand-flag" viewBox="0 0 5 3" aria-hidden="true"><rect width="5" height="1" y="0" fill="#000"/><rect width="5" height="1" y="1" fill="#DD0000"/><rect width="5" height="1" y="2" fill="#FFCE00"/></svg>Made in Germany</span><a href="#" class="p-brand-chip p-brand-link" data-garantie-open><svg class="p-brand-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="#B49A5E" d="M12 1.6l2.06 1.5 2.5-.4 1.03 2.32 2.32 1.03-.4 2.5L21.6 12l-1.5 2.06.4 2.5-2.32 1.03-1.03 2.32-2.5-.4L12 22.4l-2.06-1.5-2.5.4-1.03-2.32-2.32-1.03.4-2.5L2.4 12l1.5-2.06-.4-2.5 2.32-1.03L6.85 3.7l2.5.4z"/><path fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M8.5 12l2.4 2.4 4.6-4.8"/></svg>10 Jahre Metzler Garantie</a></div>
             </div>
+
+            <div class="p-brand p-brand--under"><span class="p-brand-chip"><svg class="p-brand-flag" viewBox="0 0 5 3" aria-hidden="true"><rect width="5" height="1" y="0" fill="#000"/><rect width="5" height="1" y="1" fill="#DD0000"/><rect width="5" height="1" y="2" fill="#FFCE00"/></svg>Made in Germany</span><a href="#" class="p-brand-chip p-brand-link" data-garantie-open><svg class="p-brand-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="#B49A5E" d="M12 1.6l2.06 1.5 2.5-.4 1.03 2.32 2.32 1.03-.4 2.5L21.6 12l-1.5 2.06.4 2.5-2.32 1.03-1.03 2.32-2.5-.4L12 22.4l-2.06-1.5-2.5.4-1.03-2.32-2.32-1.03.4-2.5L2.4 12l1.5-2.06-.4-2.5 2.32-1.03L6.85 3.7l2.5.4z"/><path fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M8.5 12l2.4 2.4 4.6-4.8"/></svg>10 Jahre Metzler Garantie</a></div>
 
             <!-- Color -->
             <div class="opt-label">Farbe <span class="chosen" id="chosenColor"></span></div>
