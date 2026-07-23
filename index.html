@@ -960,11 +960,11 @@
     .zv-table tr:last-child td { border-bottom:none; }
     .zv-list { margin:0; padding-left:1.15rem; font-size:0.875rem; color:var(--g-700); line-height:1.9; }
     .cmp-table-wrap { overflow-x:auto; }
-    .cmp-table { min-width:34rem; }
-    .cmp-table td { vertical-align:top; border:1px solid var(--g-200); }
-    .cmp-table td:first-child { white-space:nowrap; background:var(--g-100); }
+    .cmp-table { min-width:38rem; table-layout:fixed; }
+    .cmp-table td { vertical-align:top; border:1px solid var(--g-200); color:var(--black); width:calc((100% - 8rem)/3); }
+    .cmp-table td:first-child { white-space:nowrap; background:var(--g-100); width:8rem; }
     .cmp-row-img img { width:100%; max-width:8rem; display:block; }
-    .cmp-row-name td b { color:var(--g-900); font-weight:700; }
+    .cmp-row-name td b { color:var(--black); font-weight:700; }
     /* FAQ accordions inside the compare modal */
     .zv-faq { border:1px solid var(--g-200); border-radius:var(--radius-lg); margin-top:0.6rem; overflow:hidden; background:#fff; }
     .zv-faq > summary { list-style:none; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:0.95rem 1.1rem; font-size:0.9375rem; font-weight:700; color:var(--teal); background:var(--paper); transition:background .15s; }
@@ -1375,7 +1375,7 @@
     .opt.sel .tick-check svg { opacity:1; }
     .opt.sel .tick-radio::after { content:''; width:.7rem; height:.7rem; border-radius:50%; background:var(--teal); }
     .opt .badge { position:absolute; top:0; left:50%; transform:translate(-50%,-50%); background:var(--green); color:#fff; font-size:0.6875rem; font-weight:700; padding:.15rem .6rem; border-radius:var(--radius-pill); white-space:nowrap; z-index:2; }
-    .opt-info { position:absolute; top:.875rem; right:.875rem; width:1.125rem; height:1.125rem; border:none; background:none; color:var(--g-500); display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:2; padding:0; transition:color .15s; }
+    .opt-info { position:absolute; top:calc(.5rem + (1.35rem - 1.125rem)/2); right:.875rem; width:1.125rem; height:1.125rem; border:none; background:none; color:var(--g-500); display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:2; padding:0; transition:color .15s; }
     .opt-info:hover { color:var(--teal); }
     .opt-info svg { width:1.125rem; height:1.125rem; }
     /* Configurator Produktdetails popup — design-system XL two-column layout */
@@ -3570,39 +3570,39 @@
           </tbody>
         </table></div>
 
-        <details class="zv-faq" open>
+        <details class="zv-faq" name="zvfaq" open>
           <summary>7–10 Zoll Touchscreen mit 1024 × 600 Pixeln aus gehärtetem Glas<svg class="zv-faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
           <div class="zv-faq-body"><p>Großes Display, brillante Farbwiedergabe und optimaler Bedienkomfort.</p></div>
         </details>
-        <details class="zv-faq">
+        <details class="zv-faq" name="zvfaq">
           <summary>0,2 s Standby Wake-Up<svg class="zv-faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
           <div class="zv-faq-body"><p>Die Live-Videoübertragung startet nur Millisekunden nach dem Klingeln.</p></div>
         </details>
-        <details class="zv-faq">
+        <details class="zv-faq" name="zvfaq">
           <summary>Melodieauswahl<svg class="zv-faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
           <div class="zv-faq-body"><p>Klingeltöne vorinstalliert, eigene per PC aufspielbar. Inkl. Nicht-Stören-Modus.</p></div>
         </details>
-        <details class="zv-faq">
+        <details class="zv-faq" name="zvfaq">
           <summary>Live-Video<svg class="zv-faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
           <div class="zv-faq-body"><p>Besucher in HD sehen, per Fingertipp sprechen und Tür- oder Toröffner betätigen.</p></div>
         </details>
-        <details class="zv-faq">
+        <details class="zv-faq" name="zvfaq">
           <summary>WiFi / WLAN Schnittstelle<svg class="zv-faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
           <div class="zv-faq-body"><p>Jede Innenstation lässt sich an ein separates Netzwerk anbinden.</p></div>
         </details>
-        <details class="zv-faq">
+        <details class="zv-faq" name="zvfaq">
           <summary>Innovatives Bedienungskonzept<svg class="zv-faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
           <div class="zv-faq-body"><p>Nutzen Sie die VDM10 Innenstation so intuitiv wie Ihr Smartphone. Selbsterklärende Symbole, kurze Reaktionszeiten und eine große Fülle an Funktionen erwarten Sie.</p></div>
         </details>
-        <details class="zv-faq">
+        <details class="zv-faq" name="zvfaq">
           <summary>Erweiterbare Speicherkapazität<svg class="zv-faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
           <div class="zv-faq-body"><p>Speicher der Innenstation per SD-Karte um bis zu 32 GB erweiterbar.</p></div>
         </details>
-        <details class="zv-faq">
+        <details class="zv-faq" name="zvfaq">
           <summary>Weitere IP-Kameras anschließbar<svg class="zv-faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
           <div class="zv-faq-body"><p>Binden Sie weitere IP-Kameras an die Innenstation an, um deren Livebild direkt an der Innenstation anzusehen.</p></div>
         </details>
-        <details class="zv-faq">
+        <details class="zv-faq" name="zvfaq">
           <summary>Einfache Montage<svg class="zv-faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
           <div class="zv-faq-body"><p>Einfache Montage durch mitgelieferte Wandhalterung und Befestigungsmaterial.</p></div>
         </details>
