@@ -3092,7 +3092,7 @@
     </section>
 
     <!-- FAQ -->
-    <section class="section" style="background:var(--paper);border-top:1px solid var(--g-200);">
+    <section class="section" style="background:var(--paper);border-top:1px solid var(--g-200);display:none;">
       <div class="wrap-narrow">
         <div class="faq__inner">
           <aside class="faq__support">
@@ -5696,6 +5696,25 @@
     var chapters = Array.prototype.slice.call(document.querySelectorAll('.bx-split'));   // reference "craft-chapter" reveal
     if(reduce){ chapters.forEach(function(c){ c.classList.add('is-visible'); }); }
     if(camCards.length) camCards[0].classList.add('active');
+    // camera section: one wheel gesture = one step; active card auto-centres
+    (function(){
+      if(reduce || !camCards.length || !camScroll) return;
+      var animating=false, lockUntil=0;
+      function pinMid(){ var vh=window.innerHeight; var pt=document.getElementById('pdpTabs'); var pinTop=pt?Math.max(0,Math.min(vh,pt.getBoundingClientRect().bottom)):120; var scBar=document.querySelector('.sticky-cart.show'); var barH=scBar?scBar.getBoundingClientRect().height:0; return pinTop+(vh-barH-pinTop)/2; }
+      function targetY(i){ var camTopAbs=camScroll.getBoundingClientRect().top+window.scrollY; return Math.round(camTopAbs + camCards[i].offsetTop + camCards[i].offsetHeight/2 - pinMid()); }
+      function activeIndex(){ var mid=pinMid(), scTop=camScroll.getBoundingClientRect().top, best=0, bd=Infinity; for(var k=0;k<camCards.length;k++){ var c=scTop+camCards[k].offsetTop+camCards[k].offsetHeight/2; var d=Math.abs(c-mid); if(d<bd){ bd=d; best=k; } } return best; }
+      function engaged(){ if(window.innerWidth<=900) return false; var r=document.getElementById('bxCam').getBoundingClientRect(), mid=pinMid(); return r.top<=mid && r.bottom>=mid; }
+      window.addEventListener('wheel', function(e){
+        if(!engaged()) return;
+        var dir=e.deltaY>0?1:-1, next=activeIndex()+dir;
+        if(next<0 || next>=camCards.length) return;   // let the page scroll out of the section at the ends
+        e.preventDefault();
+        if(animating || Date.now()<lockUntil) return;
+        animating=true; lockUntil=Date.now()+680;
+        window.scrollTo({ top:Math.max(0,targetY(next)), behavior:'smooth' });
+        setTimeout(function(){ animating=false; }, 680);
+      }, {passive:false});
+    })();
 
 
     // lens video: play while visible, pause when off-screen (autoplay fallback)
