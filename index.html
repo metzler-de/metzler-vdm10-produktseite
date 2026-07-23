@@ -1783,6 +1783,9 @@
     .bx--dark .bx-hl:hover .bx-hl-ico { background:var(--mint); color:var(--teal-900); transform:translateY(-1px); }
     .bx--dark .bx-hl:hover .bx-hl-num { color:var(--mint); }
     .bx--dark .bx-hl:hover b { color:var(--mint); }
+    /* no picture on hover — just the subtle tint/mint effect above */
+    .bx--dark .bx-hl-img { display:none; }
+    .bx--dark .bx-hl:hover > *:not(.bx-hl-img) { opacity:1; }
 
     /* chips (SIP section) */
     .bx-chips { display:flex; flex-wrap:wrap; gap:0.5rem; margin:1.25rem 0; }
