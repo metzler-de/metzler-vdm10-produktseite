@@ -197,6 +197,14 @@
     .side-menu-label { flex:1; line-height:1.25; }
     .side-menu-chev { width:18px; height:18px; color:#CCCCCC; flex-shrink:0; transition:transform .15s,color .15s; }
     .side-menu-item:hover .side-menu-chev { color:#015253; transform:translateX(3px); }
+    /* drill-down subcategory panel */
+    .side-menu-sub { position:absolute; inset:0; z-index:2; background:#fff; transform:translateX(100%); transition:transform .32s cubic-bezier(.4,0,.2,1); overflow-y:auto; visibility:hidden; }
+    .side-menu.sub-open .side-menu-sub { transform:translateX(0); visibility:visible; }
+    .side-menu-back { display:flex; align-items:center; gap:8px; width:100%; padding:20px 24px; font-size:16px; font-weight:700; color:#1A171B; background:none; border:none; border-bottom:1px solid #eee; cursor:pointer; font-family:inherit; text-align:left; transition:color .15s; }
+    .side-menu-back svg { width:22px; height:22px; color:#333; transition:color .15s; }
+    .side-menu-back:hover { color:#015253; }
+    .side-menu-back:hover svg { color:#015253; }
+    .side-menu-sub-list { padding:6px 0 16px; }
 
     /* ════════ QUICK-ACCESS BAR ════════ */
     .quickbar { background:var(--teal); color:rgba(255,255,255,.85); position:sticky; top:64px; z-index:44; }
@@ -2021,7 +2029,7 @@
       <img src="pictures/logo.svg" alt="Metzler" />
       <button class="side-menu-close" id="sideClose" aria-label="Schließen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     </div>
-    <div class="side-menu-list">
+    <div class="side-menu-list" id="sideRoot">
       <div class="side-menu-eyebrow">Kategorien</div>
       <a href="#" class="side-menu-item" data-menu="briefkasten"><span class="side-menu-thumb"><img src="pictures/nav/cat-briefkasten.jpg" alt=""></span><span class="side-menu-label">Briefkästen</span><svg class="side-menu-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg></a>
       <a href="#" class="side-menu-item" data-menu="paketboxen"><span class="side-menu-thumb"><img src="pictures/nav/cat-paketboxen.jpg" alt=""></span><span class="side-menu-label">Paketboxen</span><svg class="side-menu-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg></a>
@@ -2032,6 +2040,10 @@
       <a href="#" class="side-menu-item" data-menu="hausnummern"><span class="side-menu-thumb"><img src="pictures/nav/cat-hausnummern.jpg" alt=""></span><span class="side-menu-label">Hausnummern</span><svg class="side-menu-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg></a>
       <a href="#" class="side-menu-item" data-menu="leuchten"><span class="side-menu-thumb"><img src="pictures/nav/cat-leuchten.jpg" alt=""></span><span class="side-menu-label">Außenleuchten</span><svg class="side-menu-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg></a>
       <a href="#" class="side-menu-item" data-menu="garten"><span class="side-menu-thumb"><img src="pictures/nav/cat-garten.jpg" alt=""></span><span class="side-menu-label">Garten</span><svg class="side-menu-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg></a>
+    </div>
+    <div class="side-menu-sub" id="sideSub" aria-hidden="true">
+      <button class="side-menu-back" id="sideBack" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 6 9 12 15 18"/></svg>Zurück</button>
+      <div class="side-menu-sub-list" id="sideSubList"></div>
     </div>
   </nav>
 
@@ -3947,10 +3959,25 @@
       /* Side menu */
       const sideMenu=document.getElementById("sideMenu"), sideOverlay=document.getElementById("sideOverlay"), sideClose=document.getElementById("sideClose");
       const open=()=>{sideMenu.classList.add("open");sideOverlay.classList.add("open");document.body.style.overflow="hidden";};
-      const close=()=>{sideMenu.classList.remove("open");sideOverlay.classList.remove("open");document.body.style.overflow="";};
+      const close=()=>{sideMenu.classList.remove("open");sideMenu.classList.remove("sub-open");sideOverlay.classList.remove("open");document.body.style.overflow="";};
       ["menuBtn","navAlleBtn","mobileMenuBtn"].forEach(id=>{const b=document.getElementById(id); if(b) b.addEventListener("click",open);});
       sideClose.addEventListener("click",close); sideOverlay.addEventListener("click",close);
-      document.querySelectorAll(".side-menu-item").forEach(item=>item.addEventListener("click",e=>{e.preventDefault();close();const m=item.dataset.menu;if(m)openMenu(m);}));
+      /* drill-down: category with a mega menu opens its subcategories in the same panel */
+      const sideSub=document.getElementById("sideSub"), sideSubList=document.getElementById("sideSubList"), sideBack=document.getElementById("sideBack");
+      const openSub=(mega)=>{
+        sideSubList.innerHTML=[...mega.querySelectorAll(".mega-item")].map(a=>{
+          const img=a.querySelector("img"), lbl=a.querySelector(".mega-item-label");
+          return '<a href="#" class="side-menu-item"><span class="side-menu-thumb"><img src="'+(img?img.getAttribute("src"):"")+'" alt=""></span><span class="side-menu-label">'+(lbl?lbl.textContent:"")+'</span></a>';
+        }).join("");
+        sideSub.scrollTop=0; sideMenu.classList.add("sub-open");
+      };
+      if(sideBack) sideBack.addEventListener("click",()=>sideMenu.classList.remove("sub-open"));
+      document.querySelectorAll("#sideRoot .side-menu-item").forEach(item=>item.addEventListener("click",e=>{
+        e.preventDefault();
+        const m=item.dataset.menu, mega=m&&document.getElementById("mega-"+m);
+        if(mega){ openSub(mega); }
+        else { close(); if(m) openMenu(m); }
+      }));
 
       /* Nav overflow "Alle" */
       const navAlleBtn=document.getElementById("navAlleBtn");
