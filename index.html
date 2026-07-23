@@ -467,11 +467,11 @@
     .cart-added-txt b { font-size:1rem; font-weight:700; color:var(--black); margin-bottom:2px; line-height:1.3; }
     .cart-added-txt small { font-size:0.75rem; color:var(--g-700); line-height:1.4; }
     /* product card */
-    .cart-item-card { display:flex; gap:1rem; align-items:flex-start; padding:1rem; border:1px solid var(--g-200); border-radius:var(--radius-lg); background:#fff; }
+    .cart-item-card { display:flex; gap:1rem; align-items:flex-start; padding:0; border:none; border-radius:0; background:none; }
     .cart-item-img { width:68px; height:68px; flex-shrink:0; border:1px solid var(--g-200); border-radius:var(--radius); overflow:hidden; background:#fff; padding:5px; }
     .cart-item-img img { width:100%; height:100%; object-fit:contain; }
     .cart-item-main { flex:1 1 auto; min-width:0; display:flex; flex-direction:column; gap:0.45rem; }
-    .cart-item-txt { font-size:0.9375rem; font-weight:700; color:var(--g-900); line-height:1.35; }
+    .cart-item-txt { font-size:0.9375rem; font-weight:700; color:var(--g-900); line-height:1.35; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
     .cart-item-qty { font-size:0.8125rem; color:var(--g-600); }
     .cart-item-edit { flex:0 0 auto; width:2rem; height:2rem; border-radius:var(--radius); display:flex; align-items:center; justify-content:center; color:var(--g-600); border:1px solid var(--g-200); background:#fff; cursor:pointer; transition:background .15s,color .15s,border-color .15s; }
     .cart-item-edit:hover { background:var(--teal); color:#fff; border-color:var(--teal); }
@@ -5620,16 +5620,9 @@
         var cn=(window.__wunschRAL && /Wunschfarbe/i.test(c.name)) ? ('Wunschfarbe · '+window.__wunschRAL.ral) : c.name.replace(/\s*\(.*\)$/,'');
         var esc=function(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');};
         var rows=[['Farbe', cn]];
+        // only colour + gravur data (Namensschild, Schriftart) — shown only when added
         if(S.gravurText.trim()) rows.push(['Namensschild', S.gravurText.trim()]);
-        if(S.gravStreet.trim()) rows.push(['Straße', S.gravStreet.trim()]);
-        if(S.gravNr.trim())     rows.push(['Hausnummer', S.gravNr.trim()]);
         if(S.font){ var f=FONTS.find(function(x){return x.id===S.font;}); rows.push(['Schriftart', f?(f.pb?'Schriftart 96':'Schriftart '+f.id):S.font]); }
-        if(S.anschluss) rows.push(['Anschluss', S.anschluss==='lan'?'LAN / PoE':'2-Draht IP']);
-        ['innen','strom','zubehoer'].forEach(function(k){
-          var step=STEPS.find(function(s){return s.key===k;}); var map=selMap(k);
-          Object.keys(map).forEach(function(id){ if(!map[id]||id==='none')return; var o=step.options.find(function(x){return x.id===id;}); if(!o)return; var qty=(k==='innen')?(S.innenQty[id]||1):1; rows.push([o.name, qty>1?(qty+'×'):'✓']); });
-        });
-        rows.push(['Anzahl', String(S.qty||1)]);
         return rows.map(function(r){ return '<div class="cart-config-row"><span>'+esc(r[0])+'</span><span>'+esc(r[1])+'</span></div>'; }).join('');
       }
       function closeCartDrawer(){ overlay.classList.remove('open'); drawer.classList.remove('open'); document.body.style.overflow=''; }
