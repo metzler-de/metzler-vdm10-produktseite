@@ -503,12 +503,14 @@
     .cart-trust span { display:inline-flex; align-items:center; gap:0.4rem; font-size:0.8125rem; font-weight:500; color:var(--g-700); }
     .cart-trust svg { width:1.05rem; height:1.05rem; color:var(--teal); flex-shrink:0; }
     /* actions */
-    .cart-drawer-actions { display:flex; flex-direction:column; gap:0.75rem; margin-top:1.5rem; }
+    .cart-drawer-footer { flex:0 0 auto; padding:0.9rem 1.5rem 1.25rem; border-top:1px solid var(--g-200); background:#fff; }
+    .cart-drawer-footer .cart-summary { margin-top:0; }
+    .cart-drawer-actions { display:flex; flex-direction:column; gap:0.75rem; margin-top:1rem; }
     .cart-drawer-actions .btn { width:100%; height:3.25rem; justify-content:center; gap:0.5rem; font-size:1rem; }
     /* DS medium size for the secondary "Zum Warenkorb" button */
     .cart-drawer-actions #cartDrawerToCart { height:2.625rem; font-size:1rem; font-weight:500; }
     .cart-drawer-actions .btn svg { width:1.1rem; height:1.1rem; }
-    .cart-drawer-legal { margin-top:auto; padding-top:1.5rem; text-align:center; font-size:0.8125rem; color:var(--g-600); }
+    .cart-drawer-legal { margin-top:0.9rem; padding-top:0; text-align:center; font-size:0.8125rem; color:var(--g-600); }
     .cart-drawer-legal a { color:var(--g-600); text-decoration:underline; }
 
     /* garantie drawer (10 Jahre Metzler Garantie) */
@@ -2590,7 +2592,7 @@
     <div class="bx-divider"></div>
 
     <!-- 2 · Alle Highlights auf einen Blick -->
-    <section data-panel="beschreibung" class="bx">
+    <section data-panel="beschreibung" class="bx bx--dark">
       <div class="bx-wrap bx-highlights">
         <p class="bx-eyebrow reveal">Version 2.0</p>
         <h2 class="bx-h bx-h--display reveal" data-delay="1">Neue <em>Features</em></h2>
@@ -3853,7 +3855,9 @@
       <div class="cart-config" id="cartDrawerConfig" hidden></div>
 
       <div class="cart-item-price"><span>Preis wie konfiguriert</span><b id="cartDrawerConfigured">699,00 €</b></div>
+    </div>
 
+    <div class="cart-drawer-footer">
       <div class="cart-summary">
         <div class="cart-total-row">
           <span>Gesamtsumme<small>inkl. 19&nbsp;% USt.</small></span>
