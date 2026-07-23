@@ -1137,6 +1137,9 @@
     /* Sticky mobile add-to-cart */
     .sticky-cart { position:fixed; bottom:0; left:0; right:0; z-index:45; background:#fff; border-top:1px solid var(--g-200); padding:0.7rem 0; display:flex; transform:translateY(110%); transition:transform .3s; }
     .sticky-cart.show { transform:translateY(0); box-shadow:0 -4px 16px rgba(0,0,0,.08); }
+    /* when the sticky bottom cart bar is visible, pinned sections centre above it */
+    body { --sticky-bottom:0px; }
+    body:has(.sticky-cart.show) { --sticky-bottom:71px; }
     .sticky-cart-inner { max-width:1600px; width:100%; margin:0 auto; padding:0 24px; display:flex; align-items:center; gap:1rem; }
     .sticky-cart-name { flex:1; min-width:0; font-size:1rem; font-weight:700; color:var(--g-900); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     .sticky-cart .sp { flex-shrink:0; text-align:right; }
@@ -1791,12 +1794,12 @@
     @media(max-width:1024px){ .bx-cam-scroll { padding-left:24px; padding-right:24px; } }
     @media(max-width:768px){ .bx-cam-scroll { padding-left:18px; padding-right:18px; } }
     @media(max-width:860px){ .bx-cam-scroll{ grid-template-columns:1fr; } }
-    .bx-cam-sticky { position:sticky; top:125px; height:calc(100vh - 125px); display:flex; align-items:center; gap:clamp(1rem,1.8vw,1.9rem); align-self:start; }
+    .bx-cam-sticky { position:sticky; top:125px; height:calc(100vh - 125px - var(--sticky-bottom,0px)); display:flex; align-items:center; gap:clamp(1rem,1.8vw,1.9rem); align-self:start; }
     .bx-cam-line { flex:0 0 auto; width:3px; height:12rem; border-radius:3px; background:rgba(255,255,255,.25); overflow:hidden; position:relative; }
     .bx-cam-fill { position:absolute; top:0; left:0; right:0; height:100%; background:var(--mint); transform:scaleY(0); transform-origin:top; transition:transform .12s linear; border-radius:3px; }
     @media(max-width:860px){ .bx-cam-line{ display:none; } }
     @media(max-width:860px){ .bx-cam-sticky{ top:5rem; margin-bottom:1.5rem; } }
-    .bx-cam-visual { position:relative; width:auto; height:min(700px, calc((100vh - 125px) * 0.82)); aspect-ratio:1/1; margin-inline:0; overflow:hidden; }
+    .bx-cam-visual { position:relative; width:auto; height:min(700px, calc((100vh - 125px - var(--sticky-bottom,0px)) * 0.82)); aspect-ratio:1/1; margin-inline:0; overflow:hidden; }
     .bx-cam-visual img, .bx-cam-visual video { width:100%; height:100%; object-fit:cover; display:block; }
     .bx-cam-ring { display:none; }
     .bx-cam-cards { display:flex; flex-direction:column; gap:68vh; padding:34vh 0; }
@@ -1824,14 +1827,14 @@
     /* point-grow slider (features) */
     /* ── Scroll-pinned feature slider: image stays put, incoming picture grows from its centre to cover the old one ── */
     .bx-tell { position:relative; background:#fff; }
-    .bx-tell-stage { position:sticky; top:120px; height:calc(100vh - 120px); display:flex; align-items:center; overflow:hidden; }
+    .bx-tell-stage { position:sticky; top:120px; height:calc(100vh - 120px - var(--sticky-bottom,0px)); display:flex; align-items:center; overflow:hidden; }
     .bx-tell-grid { position:relative; display:block; width:100%; height:calc(100vh - 120px - 2rem); }
     .bx-tell-slide { position:absolute; inset:0; display:grid; grid-template-columns:minmax(0,1fr) 46vw; align-items:center; gap:clamp(2rem,4vw,4rem); }
     .bx-tell-media { grid-column:2; grid-row:1; }
     .bx-tell-copy { grid-column:1; grid-row:1; }
     .bx-tell-slide.rev { direction:rtl; } .bx-tell-slide.rev > * { direction:ltr; }
     /* media — 90vh tall, vertically centred; incoming picture grows as a square from its centre */
-    .bx-tell-media { position:relative; width:min(100%, calc(100vh - 220px)); height:auto; aspect-ratio:1/1; margin-inline:0; border-radius:12px; overflow:hidden; }
+    .bx-tell-media { position:relative; width:min(100%, calc(100vh - 220px - var(--sticky-bottom,0px))); height:auto; aspect-ratio:1/1; margin-inline:0; border-radius:12px; overflow:hidden; }
     .bx-tell-media img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
       clip-path:inset(50% 50% 50% 50% round 12px); -webkit-clip-path:inset(50% 50% 50% 50% round 12px);
       transition:clip-path 900ms cubic-bezier(.2,.7,.2,1); will-change:clip-path; }
@@ -5755,7 +5758,9 @@
         var span = vh*0.55;                                      // distance over which a card fades out
         var pt=document.getElementById('pdpTabs');               // centre within the VISIBLE space (below header + tabs)
         var pinTop = pt ? Math.max(0, Math.min(vh, pt.getBoundingClientRect().bottom)) : 120;
-        var camMid = pinTop + (vh - pinTop)/2;
+        var scBar=document.querySelector('.sticky-cart.show');
+        var barH=scBar?scBar.getBoundingClientRect().height:0;
+        var camMid = pinTop + (vh - barH - pinTop)/2;
         for(var k=0;k<camCards.length;k++){
           var cc=camCards[k];
           var layoutCenter = scRectTop + cc.offsetTop + cc.offsetHeight/2;  // untransformed centre
