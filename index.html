@@ -1803,9 +1803,9 @@
     .bx-tell-badge { display:none; }
     /* vertical progress rail on the right side of the picture */
     /* progress = vertical dots on a subtle connector rail */
-    .bx-tell-line { position:absolute; right:clamp(1rem,1.8vw,1.9rem); top:50%; left:auto; bottom:auto; transform:translateY(-50%); width:3px; height:12rem; display:flex; flex-direction:column; padding:0; border-radius:3px; background:rgba(255,255,255,.22); overflow:hidden; z-index:6; }
+    .bx-tell-line { position:absolute; right:clamp(1rem,1.8vw,1.9rem); top:50%; left:auto; bottom:auto; transform:translateY(-50%); width:3px; height:12rem; display:flex; flex-direction:column; padding:0; border-radius:3px; background:var(--g-300); overflow:hidden; z-index:6; }
     .bx-tell-line::before { display:none; }
-    .bx-tell-fill { position:absolute; top:0; left:0; right:0; height:100%; background:var(--mint); transform:scaleY(0); transform-origin:top; transition:transform .12s linear; z-index:1; border-radius:3px; }
+    .bx-tell-fill { position:absolute; top:0; left:0; right:0; height:100%; background:var(--black); transform:scaleY(0); transform-origin:top; transition:transform .12s linear; z-index:1; border-radius:3px; }
     .bx-tell-seg { flex:1 1 0; width:100%; min-height:0; padding:0; margin:0; border:none; border-radius:0; background:transparent; cursor:pointer; position:relative; z-index:2; }
     .bx-tell-seg:hover, .bx-tell-seg.on { background:transparent; transform:none; box-shadow:none; }
     .bx-tell-seg-fill { display:none; }
