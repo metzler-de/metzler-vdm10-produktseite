@@ -1752,13 +1752,21 @@
     .bx-chips { display:flex; flex-wrap:wrap; gap:0.5rem; margin:1.25rem 0; }
     .bx-chip { font-size:0.75rem; font-weight:700; letter-spacing:0.04em; color:var(--teal-700); background:var(--teal-50); border:1px solid var(--teal-100); border-radius:var(--radius-pill); padding:0.35rem 0.85rem; }
     /* LED push-button colour swatches — mimic the real illuminated button */
-    .led-btns { display:flex; flex-wrap:wrap; gap:1.4rem; margin:1.1rem 0 0; }
-    .led-btn { display:flex; flex-direction:column; align-items:center; gap:0.55rem; }
-    .led-btn-face { position:relative; width:64px; height:64px; border-radius:50%; background:radial-gradient(circle at 50% 38%, #3a3a3e 0%, #202024 62%, #121214 100%); box-shadow:0 5px 14px -4px rgba(0,0,0,.45), inset 0 1px 1px rgba(255,255,255,.08); }
-    .led-btn-ring { position:absolute; inset:8px; border-radius:50%; border:3px solid var(--led); box-shadow:0 0 9px 1px var(--led), 0 0 3px 0 var(--led), inset 0 0 7px 0 var(--led); }
-    .led-btn-core { position:absolute; inset:17px; border-radius:50%; background:conic-gradient(from 0deg, #f2f2f4, #8d8d92, #e8e8ea, #86868b, #f2f2f4, #8d8d92, #e8e8ea, #86868b, #f2f2f4); box-shadow:inset 0 0 4px rgba(0,0,0,.35); }
-    .led-btn-core::after { content:""; position:absolute; inset:38%; border-radius:50%; background:radial-gradient(circle at 50% 40%, #fafafa, #b6b6ba); }
+    .led-btns { display:flex; flex-wrap:wrap; gap:1.5rem; margin:1.1rem 0 0; }
+    .led-btn { display:flex; flex-direction:column; align-items:center; gap:0.6rem; }
+    /* outer brushed-steel bezel */
+    .led-btn-face { position:relative; width:68px; height:68px; border-radius:50%; background:conic-gradient(from 210deg, #ededf0, #9b9ba1, #f4f4f6, #7d7d83, #dadade, #9b9ba1, #f4f4f6, #83838a, #ededf0); box-shadow:0 7px 16px -6px rgba(0,0,0,.5), inset 0 2px 3px rgba(255,255,255,.55), inset 0 -3px 6px rgba(0,0,0,.4); }
+    /* recessed dark face that the ring glows within */
+    .led-btn-face::before { content:""; position:absolute; inset:5px; border-radius:50%; background:radial-gradient(circle at 50% 38%, #2b2b2f 0%, #161618 68%, #0b0b0d 100%); box-shadow:inset 0 2px 6px rgba(0,0,0,.75); }
+    /* illuminated colour ring */
+    .led-btn-ring { position:absolute; inset:13px; border-radius:50%; border:2.5px solid var(--led); box-shadow:0 0 11px 1px var(--led), 0 0 5px 0 var(--led), inset 0 0 9px 0 var(--led); z-index:1; }
+    /* brushed-metal centre dome */
+    .led-btn-core { position:absolute; inset:19px; border-radius:50%; background:conic-gradient(from 0deg, #f4f4f6, #86868b, #eaeaec, #7f7f85, #f4f4f6, #8d8d92, #eaeaec, #86868b, #f4f4f6); box-shadow:inset 0 0 4px rgba(0,0,0,.45), 0 1px 3px rgba(0,0,0,.55); z-index:2; }
+    .led-btn-core::after { content:""; position:absolute; inset:37%; border-radius:50%; background:radial-gradient(circle at 50% 38%, #fbfbfb, #b4b4b8); }
     .led-btn-label { font-size:0.8125rem; font-weight:600; color:var(--g-800); }
+    /* H4-style intro label above the swatches */
+    .bx-h4 { font-size:1.125rem; font-weight:700; line-height:1.375; letter-spacing:normal; text-transform:none; color:var(--g-900); margin:1.5rem 0 0; }
+    @media(max-width:768px){ .bx-h4 { font-size:1rem; } }
 
     /* full-bleed dark camera panel with sticky visual */
     .bx-cam { position:relative; background:#000; color:#fff; width:100vw; margin-left:calc(50% - 50vw); }
@@ -2696,7 +2704,7 @@
                   <span class="bx-tell-badge">02</span>
                   <h2 class="bx-h">Drucktaster mit einstellbarer LED-Farbe</h2>
                   <p class="bx-lead">Damit die Beleuchtung Ihrer Video-Türsprechanlage ideal zu Ihnen und Ihrem Eingangsbereich passt, lässt sich die LED-Farbe jederzeit einstellen.</p>
-                  <p class="bx-eyebrow" style="margin-top:1.25rem;">Folgende Farben sind einstellbar</p>
+                  <p class="bx-h4">Folgende Farben sind einstellbar</p>
                   <div class="led-btns">
                     <span class="led-btn"><span class="led-btn-face" style="--led:#F4F4F6"><span class="led-btn-ring"></span><span class="led-btn-core"></span></span><span class="led-btn-label">Weiß</span></span>
                     <span class="led-btn"><span class="led-btn-face" style="--led:#35D07F"><span class="led-btn-ring"></span><span class="led-btn-core"></span></span><span class="led-btn-label">Grün</span></span>
