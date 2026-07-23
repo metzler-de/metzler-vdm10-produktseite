@@ -1625,6 +1625,7 @@
     @media(prefers-reduced-motion:reduce){ .reveal{ opacity:1 !important; transform:none !important; } }
 
     .bx-eyebrow { font-size:0.75rem; font-weight:700; line-height:1.4; letter-spacing:0.15em; text-transform:uppercase; color:var(--g-500); margin:0 0 0.9rem; }
+    @media(min-width:861px){ .bx-eyebrow--gap { margin-bottom:1.75rem; } }
     .bx-h { font-size:clamp(1.75rem,4.2vw,3rem); font-weight:800; line-height:1.12; letter-spacing:-0.02em; color:var(--g-900); margin:0 0 1rem; }
     @media(max-width:768px){ .bx-h { font-size:1.75rem; } }
     .bx-lead { font-size:1.0625rem; line-height:1.7; color:var(--g-700); margin:0 0 1rem; }
@@ -1695,12 +1696,11 @@
     @media(max-width:860px){ .mk { grid-template-columns:1fr; gap:2rem; } .mk-media img { max-height:380px; } }
 
     /* Smartphone-App — compact branded banner with abstract background */
-    .app-banner { position:relative; isolation:isolate; overflow:hidden; border-radius:1.75rem; padding:clamp(1.75rem,3.5vw,3rem); display:grid; grid-template-columns:minmax(0,1fr) minmax(0,400px); align-items:stretch; gap:clamp(1.5rem,4vw,3.25rem); color:#fff;
+    .app-banner { position:relative; isolation:isolate; overflow:hidden; border-radius:0; width:100vw; margin-left:calc(50% - 50vw); padding-block:clamp(2rem,3.5vw,3rem); padding-inline:max(40px, calc((100vw - 1600px)/2 + 40px)); display:grid; grid-template-columns:minmax(0,1fr) minmax(0,400px); align-items:center; gap:clamp(1.5rem,4vw,3.25rem); color:#fff;
       background:
         radial-gradient(1100px 560px at 90% -18%, rgba(92,219,211,.24), transparent 58%),
         radial-gradient(820px 520px at 0% 118%, rgba(0,0,0,.4), transparent 60%),
-        linear-gradient(130deg, var(--teal-900) 0%, var(--teal) 56%, #017574 100%);
-      box-shadow:0 30px 60px -22px rgba(1,41,42,.6), inset 0 1px 0 rgba(255,255,255,.08); }
+        linear-gradient(130deg, var(--teal-900) 0%, var(--teal) 56%, #017574 100%); }
     .app-banner-shapes { position:absolute; inset:0; width:100%; height:100%; z-index:0; pointer-events:none; }
     .app-banner-media { position:relative; z-index:1; order:2; align-self:end; justify-self:center; display:flex; flex-direction:column; align-items:center; }
     .app-banner-body { order:1; align-self:center; }
@@ -1711,18 +1711,18 @@
         radial-gradient(58% 55% at 50% 2%, rgba(92,219,211,.9), transparent 100%),
         radial-gradient(55% 55% at 4% 52%, rgba(1,117,116,.9), transparent 100%),
         radial-gradient(55% 55% at 96% 86%, rgba(1,82,83,.95), transparent 100%); }
-    .app-banner-media img { position:relative; z-index:1; width:auto; height:auto; max-width:100%; max-height:clamp(340px,38vw,540px); object-fit:contain; filter:drop-shadow(0 26px 48px rgba(0,0,0,.5)); }
+    .app-banner-media img { position:relative; z-index:1; width:auto; height:auto; max-width:100%; max-height:clamp(300px,30vw,440px); object-fit:contain; filter:drop-shadow(0 26px 48px rgba(0,0,0,.5)); }
     .app-banner-body { position:relative; z-index:1; max-width:44rem; }
     .app-banner-eyebrow { display:inline-flex; align-items:center; gap:0.45rem; font-size:0.75rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--mint); margin-bottom:0.75rem; }
     .app-banner-eyebrow svg { width:1rem; height:1rem; }
-    .app-banner-h { font-size:clamp(1.75rem,4.2vw,3rem); font-weight:700; letter-spacing:-0.02em; line-height:1.12; color:#fff; margin:0 0 1.35rem; }
+    .app-banner-h { font-size:clamp(1.6rem,3.6vw,2.5rem); font-weight:700; letter-spacing:-0.02em; line-height:1.12; color:#fff; margin:0 0 0.9rem; }
     .app-banner-h em { font-style:normal; color:#fff; }
-    .app-banner-lead { font-size:1rem; line-height:1.55; color:rgba(255,255,255,.82); margin:0 0 2.1rem; max-width:none; }
-    .app-banner-list { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0.9rem 1.5rem; }
+    .app-banner-lead { font-size:0.9375rem; line-height:1.5; color:rgba(255,255,255,.82); margin:0 0 1.4rem; max-width:52rem; }
+    .app-banner-list { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0.6rem 1.5rem; }
     .app-banner-list li { display:flex; align-items:center; gap:0.75rem; font-size:0.9375rem; font-weight:600; line-height:1.35; color:#fff; }
     .app-banner-ico { flex:0 0 auto; width:2.5rem; height:2.5rem; border-radius:0.625rem; background:rgba(255,255,255,.1); color:var(--mint); display:flex; align-items:center; justify-content:center; }
     .app-banner-ico svg { width:1.3rem; height:1.3rem; }
-    .app-banner-stores { display:flex; gap:0.75rem; flex-wrap:wrap; justify-content:flex-start; margin-top:2.25rem; }
+    .app-banner-stores { display:flex; gap:0.75rem; flex-wrap:wrap; justify-content:flex-start; margin-top:1.5rem; }
     .store-badge { display:inline-flex; align-items:center; gap:0.5rem; padding:0.5rem 0.85rem; background:rgba(0,0,0,.5); border:1px solid rgba(255,255,255,.22); border-radius:0.7rem; color:#fff; text-decoration:none; backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); transition:background .15s, border-color .15s, transform .15s; }
     .store-badge:hover { background:rgba(0,0,0,.75); border-color:rgba(255,255,255,.45); transform:translateY(-2px); }
     .store-badge-logo { width:1.35rem; height:1.35rem; flex-shrink:0; }
@@ -2799,7 +2799,7 @@
         <div class="bx-split">
           <div class="bx-split-media is-sm"><img src="pictures/beschreibung/q-touchscreen.png" alt="Metzler Touchscreen-Innenstation"></div>
           <div>
-            <p class="bx-eyebrow reveal">Home · Pro · Ultra</p>
+            <p class="bx-eyebrow bx-eyebrow--gap reveal">Home · Pro · Ultra</p>
             <h2 class="bx-h reveal" data-delay="1">Touchscreen-Innenstationen</h2>
             <p class="bx-lead reveal" data-delay="2">Bedienen Sie alle Funktionen der VDM10 über die intuitiv bedienbaren Innenstationen Home | Pro | Ultra. Der Touchscreen bietet dank großem Display und brillanter Auflösung optimalen Bedienkomfort. Mit der Live-Videowiedergabe sehen Sie in Echtzeit, wer klingelt, und mit nur einem Klick öffnen Sie Ihrem Besuch die Tür.</p>
             <div class="bx-feat-grid reveal" data-delay="3">
