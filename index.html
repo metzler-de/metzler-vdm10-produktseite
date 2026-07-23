@@ -1247,7 +1247,7 @@
     .cfg-bd-total span { font-size:1.0625rem; font-weight:800; color:var(--g-900); }
     .cfg-bd-sub span { color:var(--g-600); font-weight:600; }
     /* Always-visible inline configuration summary (above PayPal notice) */
-    .cfg-summary { margin:1.25rem 0; padding:1.15rem 1.25rem; border:1px solid var(--g-200); border-radius:var(--radius-lg); background:#fff; scroll-margin-top:140px; }
+    .cfg-summary { margin:1.25rem 0; padding:1.15rem 1.25rem; border:1px solid var(--g-200); border-radius:var(--radius-lg); background:#fff; scroll-margin-top:140px; scroll-margin-bottom:6.5rem; }
     #cfgSummaryBd .cfg-bd-content { max-width:none; padding:0; }
     .cfg-summary-qty { display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-top:1rem; padding-top:1rem; border-top:1px solid var(--g-200); }
     .cfg-summary-qty-lbl { font-size:0.95rem; font-weight:700; color:var(--g-900); }
@@ -5343,7 +5343,7 @@
       });
       elScroll.querySelectorAll('[data-qplus]').forEach(function(b){ b.onclick=function(e){ e.stopPropagation(); var id=b.getAttribute('data-qplus'); S.innenQty[id]=Math.min(20,(S.innenQty[id]||1)+1); render(); }; });
       elScroll.querySelectorAll('[data-qminus]').forEach(function(b){ b.onclick=function(e){ e.stopPropagation(); var id=b.getAttribute('data-qminus'); S.innenQty[id]=Math.max(1,(S.innenQty[id]||1)-1); render(); }; });
-      elScroll.querySelectorAll('.cfg-next').forEach(function(b){ b.onclick=function(){ var n=+b.getAttribute('data-next'); if(n<0){ requireGate(function(){ closeAllSteps(); var s=document.getElementById('cfgSummary'); if(s) requestAnimationFrame(function(){ s.scrollIntoView({behavior:'smooth', block:'start'}); }); }); } else openStep(n); }; });
+      elScroll.querySelectorAll('.cfg-next').forEach(function(b){ b.onclick=function(){ var n=+b.getAttribute('data-next'); if(n<0){ requireGate(function(){ closeAllSteps(); var s=document.getElementById('cfgSummary'); if(s) requestAnimationFrame(function(){ s.scrollIntoView({behavior:'smooth', block:'end'}); }); }); } else openStep(n); }; });
     }
 
     function enable3D(on){
