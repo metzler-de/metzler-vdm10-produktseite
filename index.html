@@ -1857,7 +1857,7 @@
     .bx-tell-copy { grid-column:1; grid-row:1; }
     .bx-tell-slide.rev { direction:rtl; } .bx-tell-slide.rev > * { direction:ltr; }
     /* media — 90vh tall, vertically centred; incoming picture grows as a square from its centre */
-    .bx-tell-media { position:relative; width:min(100%, calc(100vh - 220px - var(--sticky-bottom,0px))); height:auto; aspect-ratio:1/1; margin-inline:0; border-radius:12px; overflow:hidden; }
+    .bx-tell-media { position:relative; width:auto; height:min(700px, calc((100vh - 64px) * 0.8)); max-width:100%; aspect-ratio:1/1; margin-inline:0; border-radius:12px; overflow:hidden; }
     .bx-tell-media img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
       clip-path:inset(50% 50% 50% 50% round 12px); -webkit-clip-path:inset(50% 50% 50% 50% round 12px);
       transition:clip-path 900ms cubic-bezier(.2,.7,.2,1); will-change:clip-path; }
