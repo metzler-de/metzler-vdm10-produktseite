@@ -959,11 +959,20 @@
     .zv-list { margin:0; padding-left:1.15rem; font-size:0.875rem; color:var(--g-700); line-height:1.9; }
     .cmp-table-wrap { overflow-x:auto; }
     .cmp-table { min-width:34rem; }
-    .cmp-table td { vertical-align:top; }
+    .cmp-table td { vertical-align:top; border:1px solid var(--g-200); }
     .cmp-table td:first-child { white-space:nowrap; background:var(--g-100); }
-    .cmp-row-img td, .cmp-row-name td { border-bottom:none; }
     .cmp-row-img img { width:100%; max-width:8rem; display:block; }
     .cmp-row-name td b { color:var(--g-900); font-weight:700; }
+    /* FAQ accordions inside the compare modal */
+    .zv-faq { border:1px solid var(--g-200); border-radius:var(--radius-lg); margin-top:0.6rem; overflow:hidden; background:#fff; }
+    .zv-faq > summary { list-style:none; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:0.95rem 1.1rem; font-size:0.9375rem; font-weight:700; color:var(--teal); background:var(--paper); transition:background .15s; }
+    .zv-faq > summary::-webkit-details-marker { display:none; }
+    .zv-faq > summary:hover { background:var(--teal-50); }
+    .zv-faq-chev { flex:0 0 auto; width:1.1rem; height:1.1rem; color:var(--g-500); transition:transform .25s ease; }
+    .zv-faq[open] > summary .zv-faq-chev { transform:rotate(180deg); }
+    .zv-faq[open] > summary { border-bottom:1px solid var(--g-200); }
+    .zv-faq-body { padding:0.95rem 1.1rem; font-size:0.875rem; color:var(--g-700); line-height:1.6; }
+    .zv-faq-body p { margin:0; }
     @media(max-width:768px){ .zv-head-t { font-size:1.3rem; } }
 
     /* ══════════ Experten-Kontakt & Service modal (design system LG-D) ══════════ */
@@ -3536,20 +3545,42 @@
           </tbody>
         </table></div>
 
-        <h3 class="zv-h">7–10 Zoll Touchscreen mit 1024 × 600 Pixeln aus gehärtetem Glas</h3>
-        <p class="zv-p">Großes Display, brillante Farbwiedergabe und optimaler Bedienkomfort.</p>
-
-        <h3 class="zv-h">0,2 s Standby Wake-Up</h3>
-        <p class="zv-p">Die Live-Videoübertragung startet nur Millisekunden nach dem Klingeln.</p>
-
-        <h3 class="zv-h">Melodieauswahl</h3>
-        <p class="zv-p">Klingeltöne vorinstalliert, eigene per PC aufspielbar. Inkl. Nicht-Stören-Modus.</p>
-
-        <h3 class="zv-h">Live-Video</h3>
-        <p class="zv-p">Besucher in HD sehen, per Fingertipp sprechen und Tür- oder Toröffner betätigen.</p>
-
-        <h3 class="zv-h">WiFi / WLAN Schnittstelle</h3>
-        <p class="zv-p">Jede Innenstation lässt sich an ein separates Netzwerk anbinden.</p>
+        <details class="zv-faq" open>
+          <summary>7–10 Zoll Touchscreen mit 1024 × 600 Pixeln aus gehärtetem Glas<svg class="zv-faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
+          <div class="zv-faq-body"><p>Großes Display, brillante Farbwiedergabe und optimaler Bedienkomfort.</p></div>
+        </details>
+        <details class="zv-faq">
+          <summary>0,2 s Standby Wake-Up<svg class="zv-faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
+          <div class="zv-faq-body"><p>Die Live-Videoübertragung startet nur Millisekunden nach dem Klingeln.</p></div>
+        </details>
+        <details class="zv-faq">
+          <summary>Melodieauswahl<svg class="zv-faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
+          <div class="zv-faq-body"><p>Klingeltöne vorinstalliert, eigene per PC aufspielbar. Inkl. Nicht-Stören-Modus.</p></div>
+        </details>
+        <details class="zv-faq">
+          <summary>Live-Video<svg class="zv-faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
+          <div class="zv-faq-body"><p>Besucher in HD sehen, per Fingertipp sprechen und Tür- oder Toröffner betätigen.</p></div>
+        </details>
+        <details class="zv-faq">
+          <summary>WiFi / WLAN Schnittstelle<svg class="zv-faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
+          <div class="zv-faq-body"><p>Jede Innenstation lässt sich an ein separates Netzwerk anbinden.</p></div>
+        </details>
+        <details class="zv-faq">
+          <summary>Innovatives Bedienungskonzept<svg class="zv-faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
+          <div class="zv-faq-body"><p>Nutzen Sie die VDM10 Innenstation so intuitiv wie Ihr Smartphone. Selbsterklärende Symbole, kurze Reaktionszeiten und eine große Fülle an Funktionen erwarten Sie.</p></div>
+        </details>
+        <details class="zv-faq">
+          <summary>Erweiterbare Speicherkapazität<svg class="zv-faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
+          <div class="zv-faq-body"><p>Speicher der Innenstation per SD-Karte um bis zu 32 GB erweiterbar.</p></div>
+        </details>
+        <details class="zv-faq">
+          <summary>Weitere IP-Kameras anschließbar<svg class="zv-faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
+          <div class="zv-faq-body"><p>Binden Sie weitere IP-Kameras an die Innenstation an, um deren Livebild direkt an der Innenstation anzusehen.</p></div>
+        </details>
+        <details class="zv-faq">
+          <summary>Einfache Montage<svg class="zv-faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
+          <div class="zv-faq-body"><p>Einfache Montage durch mitgelieferte Wandhalterung und Befestigungsmaterial.</p></div>
+        </details>
       </div>
     </div>
   </div>
