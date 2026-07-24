@@ -1695,7 +1695,7 @@
     @media(max-width:860px){ .mk { grid-template-columns:1fr; gap:2rem; } .mk-media img { max-height:380px; } }
 
     /* Smartphone-App — compact branded banner with abstract background */
-    .app-banner { position:relative; isolation:isolate; overflow:visible; border-radius:0; width:100vw; margin-left:calc(50% - 50vw); padding-block:clamp(2rem,3.5vw,3rem); padding-inline:max(40px, calc((100vw - 1600px)/2 + 40px)); display:grid; grid-template-columns:minmax(0,1fr) minmax(0,400px); align-items:center; gap:clamp(1.5rem,4vw,3.25rem); color:#fff;
+    .app-banner { position:relative; isolation:isolate; overflow:visible; border-radius:0; width:100vw; margin-left:calc(50% - 50vw); padding-block:clamp(2rem,3.5vw,3rem); padding-inline:max(40px, calc((100vw - 1600px)/2 + 40px)); display:grid; grid-template-columns:minmax(0,1fr) minmax(0,330px); align-items:center; gap:clamp(1.5rem,4vw,3.25rem); color:#fff;
       background:
         radial-gradient(1100px 560px at 90% -18%, rgba(92,219,211,.24), transparent 58%),
         radial-gradient(820px 520px at 0% 118%, rgba(0,0,0,.4), transparent 60%),
@@ -1710,13 +1710,13 @@
         radial-gradient(58% 55% at 50% 2%, rgba(92,219,211,.9), transparent 100%),
         radial-gradient(55% 55% at 4% 52%, rgba(1,117,116,.9), transparent 100%),
         radial-gradient(55% 55% at 96% 86%, rgba(1,82,83,.95), transparent 100%); }
-    .app-banner-media img { position:absolute; bottom:0; left:50%; transform:translateX(-50%); z-index:1; width:auto; height:auto; max-width:100%; max-height:clamp(430px,44vw,620px); object-fit:contain; filter:drop-shadow(0 26px 48px rgba(0,0,0,.5)); }
-    .app-banner-body { position:relative; z-index:1; max-width:44rem; }
+    .app-banner-media img { position:absolute; bottom:0; left:50%; transform:translateX(-50%); z-index:1; width:auto; height:auto; max-width:100%; max-height:clamp(360px,36vw,520px); object-fit:contain; filter:drop-shadow(0 26px 48px rgba(0,0,0,.5)); }
+    .app-banner-body { position:relative; z-index:1; max-width:none; }
     .app-banner-eyebrow { display:inline-flex; align-items:center; gap:0.45rem; font-size:0.75rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--mint); margin-bottom:0.75rem; }
     .app-banner-eyebrow svg { width:1rem; height:1rem; }
     .app-banner-h { font-size:clamp(1.6rem,3.6vw,2.5rem); font-weight:700; letter-spacing:-0.02em; line-height:1.12; color:#fff; margin:0 0 0.9rem; }
     .app-banner-h em { font-style:normal; color:#fff; }
-    .app-banner-lead { font-size:0.9375rem; line-height:1.5; color:rgba(255,255,255,.82); margin:0 0 1.4rem; max-width:52rem; }
+    .app-banner-lead { font-size:0.9375rem; line-height:1.5; color:rgba(255,255,255,.82); margin:0 0 1.4rem; max-width:none; }
     .app-banner-list { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0.6rem 1.5rem; }
     .app-banner-list li { display:flex; align-items:center; gap:0.75rem; font-size:0.9375rem; font-weight:600; line-height:1.35; color:#fff; }
     .app-banner-ico { flex:0 0 auto; width:2.5rem; height:2.5rem; border-radius:0.625rem; background:rgba(255,255,255,.1); color:var(--mint); display:flex; align-items:center; justify-content:center; }
