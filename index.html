@@ -350,6 +350,12 @@
     .p-brand-chip { display:inline-flex; align-items:center; gap:0.45rem; background:#fff; border:1px solid var(--g-200); border-radius:var(--radius-pill); padding:0.2rem 0.85rem 0.2rem 0.5rem; font-size:0.75rem; font-weight:800; line-height:1.4; letter-spacing:0.1em; text-transform:uppercase; color:var(--g-700); }
     .p-brand-flag { flex:0 0 auto; width:1.05rem; height:0.75rem; border-radius:2px; overflow:hidden; display:block; box-shadow:0 0 0 1px rgba(0,0,0,.06); }
     .p-brand-ico { flex:0 0 auto; width:1.05rem; height:1.05rem; display:block; }
+    @media(max-width:520px){
+      .p-brand { flex-wrap:nowrap; gap:0.4rem; }
+      .p-brand-chip { gap:0.3rem; padding:0.2rem 0.5rem 0.2rem 0.35rem; font-size:0.5625rem; letter-spacing:0.04em; white-space:nowrap; }
+      .p-brand-flag { width:0.9rem; height:0.65rem; }
+      .p-brand-ico { width:0.9rem; height:0.9rem; }
+    }
     .p-brand-link { text-decoration:none; transition:background .15s; }
     .p-brand-link:hover { background:var(--g-200); }
     .p-title { font-size:1.875rem; font-weight:700; line-height:1.2; margin:0 0 1.1rem; color:var(--g-900); }
