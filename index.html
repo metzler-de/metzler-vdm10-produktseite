@@ -1695,7 +1695,7 @@
     @media(max-width:860px){ .mk { grid-template-columns:1fr; gap:2rem; } .mk-media img { max-height:380px; } }
 
     /* Smartphone-App — compact branded banner with abstract background */
-    .app-banner { position:relative; isolation:isolate; overflow:visible; border-radius:0; width:100vw; margin-left:calc(50% - 50vw); padding-block:clamp(2rem,3.5vw,3rem); padding-inline:max(40px, calc((100vw - 1600px)/2 + 40px)); display:grid; grid-template-columns:minmax(0,1fr) minmax(0,330px); align-items:center; gap:clamp(1.5rem,4vw,3.25rem); color:#fff;
+    .app-banner { position:relative; isolation:isolate; overflow:visible; border-radius:0; width:100vw; margin-left:calc(50% - 50vw); margin-top:clamp(4rem,9vh,9rem); padding-block:clamp(2rem,3.5vw,3rem); padding-inline:max(40px, calc((100vw - 1600px)/2 + 40px)); display:grid; grid-template-columns:minmax(0,1fr) minmax(0,330px); align-items:center; gap:clamp(1.5rem,4vw,3.25rem); color:#fff;
       background:
         radial-gradient(1100px 560px at 90% -18%, rgba(92,219,211,.24), transparent 58%),
         radial-gradient(820px 520px at 0% 118%, rgba(0,0,0,.4), transparent 60%),
@@ -1981,6 +1981,17 @@
     .tech-dl-link { display:inline-flex; align-items:center; gap:0.5rem; font-size:0.9375rem; font-weight:700; color:var(--teal); text-decoration:none; }
     .tech-dl-link:hover { text-decoration:underline; }
     .tech-dl-link svg { width:1.15rem; height:1.15rem; }
+    /* real technical figures / connection diagrams */
+    .tech-figs { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; margin-top:1.1rem; }
+    @media(max-width:640px){ .tech-figs { grid-template-columns:1fr; } }
+    .tech-fig { border:1px solid var(--g-200); border-radius:var(--radius-lg); overflow:hidden; background:#fff; }
+    .tech-fig img { width:100%; height:auto; display:block; background:#fff; }
+    .tech-fig figcaption { padding:0.6rem 0.9rem; font-size:0.8125rem; font-weight:600; color:var(--g-800); border-top:1px solid var(--g-100); }
+    .tech-dims { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; margin-top:1.1rem; }
+    @media(max-width:640px){ .tech-dims { grid-template-columns:1fr; } }
+    .tech-dims figure { margin:0; border:1px solid var(--g-200); border-radius:var(--radius-lg); overflow:hidden; background:#fff; }
+    .tech-dims img { width:100%; height:auto; display:block; background:#fff; padding:0.75rem; box-sizing:border-box; }
+    .tech-dims figcaption { padding:0.6rem 0.9rem; font-size:0.8125rem; font-weight:600; color:var(--g-800); border-top:1px solid var(--g-100); }
   </style>
   <script>
     /* Preserve scroll position across page reloads */
@@ -2830,9 +2841,6 @@
             <circle cx="120" cy="430" r="210" fill="url(#abBlob)"/>
             <path d="M-40 350 C 300 250 720 460 1260 280" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5"/>
             <rect x="980" y="345" width="150" height="150" rx="26" fill="url(#abDots)" opacity="0.7" transform="rotate(-7 1055 420)"/>
-            <circle cx="560" cy="70" r="6" fill="rgba(92,219,211,0.55)"/>
-            <circle cx="905" cy="150" r="4.5" fill="rgba(255,255,255,0.4)"/>
-            <circle cx="1165" cy="330" r="8" fill="rgba(92,219,211,0.4)"/>
           </svg>
           <div class="app-banner-media">
             <img src="pictures/beschreibung/q-app-phone-nobg.png" alt="VDM10 Smartphone-App – Live-Videoanruf">
@@ -2967,6 +2975,10 @@
                   <div class="datasheet-row"><dt>Gewicht</dt><dd>ca. 2,12&nbsp;kg</dd></div>
                 </dl></div>
               </div>
+              <div class="tech-dims">
+                <figure><img src="https://edelstahl-tuerklingel.de/gfx/vdm10/bemassung/vdm10-1t-ap.jpg" alt="Bemaßung VDM10 1 Taster Aufputz" loading="lazy"><figcaption>Bemaßung · VDM10 1 Taster (Aufputz)</figcaption></figure>
+                <figure><img src="https://edelstahl-tuerklingel.de/gfx/vdm10/vdm10-montagehoehe.jpg" alt="Empfohlene Montagehöhe der VDM10" loading="lazy"><figcaption>Empfohlene Montagehöhe</figcaption></figure>
+              </div>
             </div>
           </div>
 
@@ -2974,12 +2986,13 @@
             <button type="button" class="tech-acc-head" aria-expanded="false"><span class="tech-acc-title">Anschlussübersicht(en) 2-Draht</span><span class="tech-acc-caret" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></button>
             <div class="tech-acc-body">
               <p class="tech-note">Die VDM10 lässt sich über eine vorhandene 2-Draht-Leitung anschließen – ideal für die Nachrüstung im Bestandsbau. Folgende Anschlussvarianten stehen zur Verfügung:</p>
-              <ul class="tech-varlist">
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Anschluss 2-Draht IP</li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Anschluss 2-Draht IP mit Router und WLAN-Innenstation</li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Anschluss 2-Draht IP mit 2 Türstationen</li>
-              </ul>
-              <a class="tech-dl-link" href="https://edelstahl-tuerklingel.de/mediafiles/Sonstiges/intercom/Anschlussvorgaben_VDM10.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>Vollständige Anschlussvorgaben (PDF)</a>
+              <div class="tech-figs">
+                <figure class="tech-fig"><img src="https://edelstahl-tuerklingel.de/gfx/vdm10/anschluss/SPA_VDM10-Colson_1AS_1T_Anschluss-2-Draht-IP_web.jpg" alt="Anschluss 2-Draht IP" loading="lazy"><figcaption>Anschluss 2-Draht IP</figcaption></figure>
+                <figure class="tech-fig"><img src="https://edelstahl-tuerklingel.de/gfx/vdm10/anschluss/SPA_VDM10-Colson_1AS_1T_WLAN_web.jpg" alt="2-Draht IP mit Router und WLAN-Innenstation" loading="lazy"><figcaption>Mit Router &amp; WLAN-Innenstation</figcaption></figure>
+                <figure class="tech-fig"><img src="https://edelstahl-tuerklingel.de/gfx/vdm10/anschluss/SPA_VDM10-Colson_2AS_1T_Anschluss-2-Draht-IP_web.jpg" alt="2-Draht IP mit 2 Türstationen" loading="lazy"><figcaption>Mit 2 Türstationen</figcaption></figure>
+                <figure class="tech-fig"><img src="https://edelstahl-tuerklingel.de/gfx/vdm10/anschluss/SPA_VDM10-Colson_2AS_1T_WLAN_web.jpg" alt="2-Draht IP mit Router, WLAN-Innenstation und 2 Türstationen" loading="lazy"><figcaption>Mit WLAN &amp; 2 Türstationen</figcaption></figure>
+              </div>
+              <a class="tech-dl-link" href="https://edelstahl-tuerklingel.de/mediafiles/Sonstiges/VDM10_Anschlussvorgaben_2-Draht-IP.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>Anschlussvorgaben 2-Draht IP (PDF)</a>
             </div>
           </div>
 
@@ -2987,12 +3000,13 @@
             <button type="button" class="tech-acc-head" aria-expanded="false"><span class="tech-acc-title">Anschlussübersicht(en) LAN</span><span class="tech-acc-caret" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></button>
             <div class="tech-acc-body">
               <p class="tech-note">Bei vorhandener Netzwerkverkabelung erfolgt der Anschluss über LAN/PoE – Strom und Daten laufen über ein einziges Netzwerkkabel. Folgende Anschlussvarianten stehen zur Verfügung:</p>
-              <ul class="tech-varlist">
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Anschluss LAN/PoE mit PoE-Switch und WLAN-Innenstation</li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Anschluss LAN/PoE mit PoE-Switch</li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Anschluss LAN/PoE mit PoE-Switch, WLAN-Innenstation und 2 Türstationen</li>
-              </ul>
-              <a class="tech-dl-link" href="https://edelstahl-tuerklingel.de/mediafiles/Sonstiges/intercom/Anschlussvorgaben_VDM10.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>Vollständige Anschlussvorgaben (PDF)</a>
+              <div class="tech-figs">
+                <figure class="tech-fig"><img src="https://edelstahl-tuerklingel.de/gfx/vdm10/anschluss/SPA_VDM10-Colson_1AS_1T_PoE-Switch_Anschlussuebersicht.jpg" alt="LAN/PoE mit PoE-Switch" loading="lazy"><figcaption>Mit PoE-Switch</figcaption></figure>
+                <figure class="tech-fig"><img src="https://edelstahl-tuerklingel.de/gfx/vdm10/anschluss/SPA_VDM10-Colson_1AS_1T_WLAN_Anschlussuebersicht.jpg" alt="LAN/PoE mit PoE-Switch und WLAN-Innenstation" loading="lazy"><figcaption>Mit PoE-Switch &amp; WLAN-Innenstation</figcaption></figure>
+                <figure class="tech-fig"><img src="https://edelstahl-tuerklingel.de/gfx/vdm10/anschluss/SPA_VDM10-Colson_2AS_1T_PoE-Switch_Anschlussuebersicht.jpg" alt="LAN/PoE mit PoE-Switch und 2 Türstationen" loading="lazy"><figcaption>Mit PoE-Switch &amp; 2 Türstationen</figcaption></figure>
+                <figure class="tech-fig"><img src="https://edelstahl-tuerklingel.de/gfx/vdm10/anschluss/SPA_VDM10-Colson_2AS_1T_WLAN_Anschlussuebersicht.jpg" alt="LAN/PoE mit PoE-Switch, WLAN-Innenstation und 2 Türstationen" loading="lazy"><figcaption>Mit PoE-Switch, WLAN &amp; 2 Türstationen</figcaption></figure>
+              </div>
+              <a class="tech-dl-link" href="https://edelstahl-tuerklingel.de/mediafiles/Sonstiges/VDM10_Anschlussvorgaben_PoE_LAN.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>Anschlussvorgaben LAN/PoE (PDF)</a>
             </div>
           </div>
 
