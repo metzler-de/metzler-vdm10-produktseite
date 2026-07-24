@@ -1293,6 +1293,8 @@
     /* not-ready CTA (still clickable → guides to the missing step) */
     .cfg-bar .btn.not-ready { opacity:0.55; }
     .cfg-bar .btn.not-ready:hover { opacity:0.8; }
+    /* hide the quantity counter until all required steps are chosen */
+    .cfg-bar-actions:has(#cfgToCart.not-ready) .qty-counter { display:none; }
     /* attention pulse on the required step when the user tries to proceed */
     @keyframes cfgAttn { 0%{ box-shadow:0 0 0 0 rgba(212,41,36,.45); } 70%{ box-shadow:0 0 0 7px rgba(212,41,36,0); } 100%{ box-shadow:0 0 0 0 rgba(212,41,36,0); } }
     .cfg-acc.attn { border-color:var(--red) !important; animation:cfgAttn 1s ease-out 2; }
@@ -1992,6 +1994,25 @@
     .tech-dims figure { margin:0; border:1px solid var(--g-200); border-radius:var(--radius-lg); overflow:hidden; background:#fff; }
     .tech-dims img { width:100%; height:auto; display:block; background:#fff; padding:0.75rem; box-sizing:border-box; }
     .tech-dims figcaption { padding:0.6rem 0.9rem; font-size:0.8125rem; font-weight:600; color:var(--g-800); border-top:1px solid var(--g-100); }
+    /* Technische Details — sticky side-menu + content layout */
+    .techdocs { display:grid; grid-template-columns:minmax(220px,270px) 1fr; gap:2.75rem; align-items:start; margin-top:0.5rem; }
+    .techdocs-nav { position:sticky; top:130px; display:flex; flex-direction:column; gap:0.15rem; border-left:1px solid var(--g-200); }
+    .td-navbtn { position:relative; text-align:left; padding:0.85rem 1.1rem; margin-left:-1px; border:none; background:none; border-left:2px solid transparent; font-family:inherit; font-size:0.95rem; font-weight:600; color:var(--g-600); cursor:pointer; transition:background .15s, color .15s, border-color .15s; line-height:1.35; }
+    .td-navbtn:hover { color:var(--g-900); }
+    .td-navbtn.active { color:var(--teal); border-left-color:var(--teal); font-weight:700; }
+    .techdocs-content { min-width:0; }
+    .techdocs-panel { display:none; }
+    .techdocs-panel.is-active { display:block; animation:tdFade .28s ease; }
+    @keyframes tdFade { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+    .techdocs-h { font-size:1.375rem; font-weight:700; color:var(--g-900); margin:0 0 1.15rem; letter-spacing:-0.01em; }
+    @media(max-width:860px){
+      .techdocs { grid-template-columns:1fr; gap:1.25rem; }
+      .techdocs-nav { position:static; flex-direction:row; overflow-x:auto; gap:0.5rem; border-left:none; padding-bottom:0.15rem; scrollbar-width:none; }
+      .techdocs-nav::-webkit-scrollbar { display:none; }
+      .td-navbtn { flex:0 0 auto; margin-left:0; border-left:none; border:1px solid var(--g-200); border-radius:var(--radius-pill); white-space:nowrap; padding:0.5rem 0.95rem; font-size:0.875rem; }
+      .td-navbtn.active { background:var(--teal); color:#fff; border-color:var(--teal); }
+      .techdocs-h { display:none; }
+    }
   </style>
   <script>
     /* Preserve scroll position across page reloads */
@@ -2949,15 +2970,16 @@
     <!-- Tech specs -->
     <section data-panel="technische-details" class="section" id="technische-details" style="background:#fff;scroll-margin-top:140px;">
       <div class="wrap-narrow">
-        <div class="section-head">
-          <div class="eyebrow">Datenblatt</div>
-          <h2 class="section-title">Technische Details</h2>
-        </div>
-        <div class="tech-acc" id="techAcc">
-
-          <div class="tech-acc-item">
-            <button type="button" class="tech-acc-head" aria-expanded="false"><span class="tech-acc-title">Abmessungen / Größe</span><span class="tech-acc-caret" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></button>
-            <div class="tech-acc-body">
+        <div class="techdocs" id="techDocs">
+          <nav class="techdocs-nav" aria-label="Technische Details">
+            <button type="button" class="td-navbtn active" data-doc="0">Abmessungen / Größe</button>
+            <button type="button" class="td-navbtn" data-doc="1">Anschlussübersicht(en) 2-Draht</button>
+            <button type="button" class="td-navbtn" data-doc="2">Anschlussübersicht(en) LAN</button>
+            <button type="button" class="td-navbtn" data-doc="3">Datenblatt Außeneinheit / Türstation</button>
+          </nav>
+          <div class="techdocs-content">
+            <div class="techdocs-panel is-active" data-doc="0">
+              <h3 class="techdocs-h">Abmessungen / Größe</h3>
               <p class="tech-note">Maße der Türstation VDM10 (1 Klingeltaster). Empfohlene Montagehöhe: 145–165 cm, gemessen an der Oberkante der Frontplatte.</p>
               <div class="datasheet-grid">
                 <div class="datasheet-group"><h4 class="datasheet-group-title">Frontplatte</h4><dl class="datasheet-list">
@@ -2980,11 +3002,8 @@
                 <figure><img src="https://edelstahl-tuerklingel.de/gfx/vdm10/vdm10-montagehoehe.jpg" alt="Empfohlene Montagehöhe der VDM10" loading="lazy"><figcaption>Empfohlene Montagehöhe</figcaption></figure>
               </div>
             </div>
-          </div>
-
-          <div class="tech-acc-item">
-            <button type="button" class="tech-acc-head" aria-expanded="false"><span class="tech-acc-title">Anschlussübersicht(en) 2-Draht</span><span class="tech-acc-caret" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></button>
-            <div class="tech-acc-body">
+            <div class="techdocs-panel" data-doc="1">
+              <h3 class="techdocs-h">Anschlussübersicht(en) 2-Draht</h3>
               <p class="tech-note">Die VDM10 lässt sich über eine vorhandene 2-Draht-Leitung anschließen – ideal für die Nachrüstung im Bestandsbau. Folgende Anschlussvarianten stehen zur Verfügung:</p>
               <div class="tech-figs">
                 <figure class="tech-fig"><img src="https://edelstahl-tuerklingel.de/gfx/vdm10/anschluss/SPA_VDM10-Colson_1AS_1T_Anschluss-2-Draht-IP_web.jpg" alt="Anschluss 2-Draht IP" loading="lazy"><figcaption>Anschluss 2-Draht IP</figcaption></figure>
@@ -2994,11 +3013,8 @@
               </div>
               <a class="tech-dl-link" href="https://edelstahl-tuerklingel.de/mediafiles/Sonstiges/VDM10_Anschlussvorgaben_2-Draht-IP.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>Anschlussvorgaben 2-Draht IP (PDF)</a>
             </div>
-          </div>
-
-          <div class="tech-acc-item">
-            <button type="button" class="tech-acc-head" aria-expanded="false"><span class="tech-acc-title">Anschlussübersicht(en) LAN</span><span class="tech-acc-caret" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></button>
-            <div class="tech-acc-body">
+            <div class="techdocs-panel" data-doc="2">
+              <h3 class="techdocs-h">Anschlussübersicht(en) LAN</h3>
               <p class="tech-note">Bei vorhandener Netzwerkverkabelung erfolgt der Anschluss über LAN/PoE – Strom und Daten laufen über ein einziges Netzwerkkabel. Folgende Anschlussvarianten stehen zur Verfügung:</p>
               <div class="tech-figs">
                 <figure class="tech-fig"><img src="https://edelstahl-tuerklingel.de/gfx/vdm10/anschluss/SPA_VDM10-Colson_1AS_1T_PoE-Switch_Anschlussuebersicht.jpg" alt="LAN/PoE mit PoE-Switch" loading="lazy"><figcaption>Mit PoE-Switch</figcaption></figure>
@@ -3008,11 +3024,8 @@
               </div>
               <a class="tech-dl-link" href="https://edelstahl-tuerklingel.de/mediafiles/Sonstiges/VDM10_Anschlussvorgaben_PoE_LAN.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>Anschlussvorgaben LAN/PoE (PDF)</a>
             </div>
-          </div>
-
-          <div class="tech-acc-item">
-            <button type="button" class="tech-acc-head" aria-expanded="false"><span class="tech-acc-title">Datenblatt Außeneinheit / Türstation</span><span class="tech-acc-caret" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></button>
-            <div class="tech-acc-body">
+            <div class="techdocs-panel" data-doc="3">
+              <h3 class="techdocs-h">Datenblatt Außeneinheit / Türstation</h3>
               <div class="datasheet-grid">
                 <div class="datasheet-group"><h4 class="datasheet-group-title">System</h4><dl class="datasheet-list">
                   <div class="datasheet-row"><dt>Prozessor</dt><dd>Embedded MCU Prozessor</dd></div>
@@ -5869,14 +5882,16 @@
     });
   })();
 
-  /* ════════ Technische Details — accordion ════════ */
+  /* ════════ Technische Details — sticky side-menu ════════ */
   (function(){
-    var acc=document.getElementById('techAcc'); if(!acc) return;
-    acc.addEventListener('click', function(e){
-      var head=e.target.closest('.tech-acc-head'); if(!head) return;
-      var item=head.closest('.tech-acc-item');
-      var open=item.classList.toggle('is-open');
-      head.setAttribute('aria-expanded', open?'true':'false');
+    var td=document.getElementById('techDocs'); if(!td) return;
+    var btns=Array.prototype.slice.call(td.querySelectorAll('.td-navbtn'));
+    var panels=Array.prototype.slice.call(td.querySelectorAll('.techdocs-panel'));
+    td.addEventListener('click', function(e){
+      var b=e.target.closest('.td-navbtn'); if(!b) return;
+      var id=b.getAttribute('data-doc');
+      btns.forEach(function(x){ x.classList.toggle('active', x===b); });
+      panels.forEach(function(p){ p.classList.toggle('is-active', p.getAttribute('data-doc')===id); });
     });
   })();
 
